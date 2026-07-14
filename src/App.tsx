@@ -179,7 +179,7 @@ function Hero() {
         <img
           src="/media/hero-team-sprite-v2.png"
           alt=""
-          className="hero-team-sprite pointer-events-none absolute left-1/2 top-[20%] z-[5] w-[52vw] max-w-[230px] sm:top-[13%] sm:w-[38vw] sm:max-w-[300px] md:top-[11%] md:w-[27vw] md:max-w-[350px] lg:top-[13%] lg:w-[23vw] lg:max-w-[380px]"
+          className="hero-team-sprite pointer-events-none absolute bottom-[40.5%] left-1/2 z-[5] w-[52vw] max-w-[230px] sm:bottom-[36%] sm:w-[38vw] sm:max-w-[300px] md:bottom-[34%] md:w-[27vw] md:max-w-[350px] lg:bottom-[35%] lg:w-[23vw] lg:max-w-[380px]"
           aria-hidden="true"
         />
 
@@ -287,14 +287,43 @@ function Hero() {
   )
 }
 
+type SectionTone = 'coral' | 'mint' | 'sky' | 'gold'
+
+type SectionShellProps = {
+  id: string
+  labelledBy: string
+  tone: SectionTone
+  children: ReactNode
+  noise?: boolean
+}
+
+function SectionShell({ id, labelledBy, tone, children, noise = false }: SectionShellProps) {
+  return (
+    <section
+      id={id}
+      aria-labelledby={labelledBy}
+      className="bg-black px-4 py-8 md:px-6 md:py-10 lg:py-12"
+    >
+      <div
+        className={`section-panel section-panel--${tone} relative mx-auto max-w-[1400px] overflow-hidden rounded-2xl md:rounded-[2rem]`}
+      >
+        {noise ? (
+          <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
+        ) : null}
+        {children}
+      </div>
+    </section>
+  )
+}
+
 function About() {
   const bodyCopy =
     '2025년부터 이미지·음성·영상 생성, 바이브코딩, 데이터 시스템, 직원교육을 실제 업무와 행사에 적용해 왔습니다. 완성된 화면뿐 아니라 문제 정의, 제약, 반복 과정, 그리고 AI의 결과를 사람이 어떻게 검증했는지까지 함께 기록합니다.'
 
   return (
-    <section id="about" aria-labelledby="about-title" className="bg-black px-4 py-16 md:px-6 md:py-24">
-      <div className="mx-auto flex min-h-[90vh] max-w-6xl flex-col items-center justify-center overflow-hidden rounded-2xl bg-[#101010] px-5 py-20 text-center md:rounded-[2rem] md:px-12 md:py-28">
-        <p className="mb-9 text-[10px] font-bold uppercase tracking-[0.18em] text-primary sm:text-xs">
+    <SectionShell id="about" labelledBy="about-title" tone="coral">
+      <div className="relative z-10 flex flex-col items-center px-5 py-14 text-center sm:px-7 md:px-10 md:py-16 lg:px-14 lg:py-20">
+        <p className="section-kicker mb-7 text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs md:mb-9">
           Kookmin University · Digital AI Innovation Center
         </p>
 
@@ -306,7 +335,7 @@ function About() {
             { text: 'AI를 보여 주는 것에서,', className: 'font-normal' },
             {
               text: 'making it work.',
-              className: 'font-serif italic',
+              className: 'section-accent-text font-serif italic',
               breakBefore: true,
             },
             {
@@ -319,18 +348,14 @@ function About() {
 
         <ScrollOpacityText
           text={bodyCopy}
-          className="mt-16 max-w-3xl text-sm leading-[1.9] text-[#DEDBC8] sm:text-base md:mt-20 md:text-lg"
+          className="mt-10 max-w-3xl text-sm leading-[1.9] text-[#DEDBC8] sm:text-base md:mt-12 md:text-lg"
         />
 
-        <dl className="mt-16 grid w-full grid-cols-2 border-y border-white/10 text-left md:mt-20 md:grid-cols-4">
-          {proofStats.map((stat, index) => (
+        <dl className="about-proof-grid mt-10 grid w-full grid-cols-2 gap-2 text-left md:mt-14 md:grid-cols-4">
+          {proofStats.map((stat) => (
             <div
               key={stat.label}
-              className={`flex flex-col px-3 py-6 sm:px-5 md:py-8 ${
-                index % 2 === 0 ? 'border-r border-white/10' : ''
-              } ${index < 2 ? 'border-b border-white/10 md:border-b-0' : ''} ${
-                index === 1 ? 'md:border-r' : ''
-              }`}
+              className="flex flex-col rounded-xl border border-white/[0.07] bg-black/20 px-3 py-5 sm:px-5 md:py-6"
             >
               <dt className="order-2 mt-3 text-xs font-bold text-primary/85 sm:text-sm">{stat.label}</dt>
               <dd className="order-1 text-4xl font-light tracking-[-0.06em] text-primary sm:text-5xl lg:text-6xl">
@@ -341,7 +366,7 @@ function About() {
           ))}
         </dl>
       </div>
-    </section>
+    </SectionShell>
   )
 }
 
@@ -377,15 +402,12 @@ function AnimatedCard({ children, className = '', delay = 0, labelledBy }: Anima
 
 function Projects() {
   return (
-    <section
-      id="projects"
-      aria-labelledby="projects-title"
-      className="relative overflow-hidden bg-black px-4 py-20 md:px-6 md:py-28"
-    >
-      <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.12]" aria-hidden="true" />
-
-      <div className="relative z-10 mx-auto max-w-[1500px]">
-        <div className="mb-12 flex flex-col gap-5 md:mb-16 md:flex-row md:items-end md:justify-between">
+    <SectionShell id="projects" labelledBy="projects-title" tone="mint" noise>
+      <div className="relative z-10 px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <p className="section-kicker mb-6 text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
+          Selected work · 주요 프로젝트
+        </p>
+        <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end md:justify-between">
           <WordsPullUpMultiStyle
             as="h2"
             id="projects-title"
@@ -411,9 +433,9 @@ function Projects() {
               key={project.number}
               delay={index * 0.1}
               labelledBy={`project-${project.number}-title`}
-              className="group overflow-hidden rounded-[1.75rem] border border-white/[0.06] bg-[#171717] md:grid md:grid-cols-12"
+              className="group overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-black/25 md:grid md:grid-cols-12 md:rounded-[1.75rem]"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#212121] md:col-span-5 md:aspect-auto md:min-h-[420px] lg:min-h-[480px]">
+              <div className="project-media relative aspect-[16/10] overflow-hidden bg-[#212121] md:col-span-5 md:aspect-auto md:min-h-[400px] lg:min-h-[440px]">
                 <img
                   src={project.image}
                   alt={project.alt}
@@ -473,17 +495,17 @@ function Projects() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionShell>
   )
 }
 
 function Process() {
   return (
-    <section id="process" aria-labelledby="process-title" className="bg-black px-4 py-16 md:px-6 md:py-24">
-      <div className="mx-auto max-w-[1500px] overflow-hidden rounded-2xl bg-[#101010] md:rounded-[2rem]">
+    <SectionShell id="process" labelledBy="process-title" tone="sky">
+      <div className="relative z-10">
         <div className="grid lg:grid-cols-2">
-          <div className="flex flex-col justify-center px-6 py-16 sm:px-10 md:px-14 md:py-20 lg:px-16">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary/70 sm:text-xs">
+          <div className="flex flex-col justify-center px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
+            <p className="section-kicker text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
               From experiment to impact · 2025—Now
             </p>
             <WordsPullUpMultiStyle
@@ -491,9 +513,9 @@ function Process() {
               id="process-title"
               className="mt-8 justify-start text-left text-4xl font-normal leading-[0.95] sm:text-5xl md:text-6xl"
               segments={[
-                { text: 'Experiment.', className: 'font-serif italic text-primary' },
-                { text: 'Apply.', className: 'font-serif italic text-primary' },
-                { text: 'Scale.', className: 'font-serif italic text-primary' },
+                { text: 'Experiment.', className: 'section-accent-text font-serif italic' },
+                { text: 'Apply.', className: 'section-accent-text font-serif italic' },
+                { text: 'Scale.', className: 'section-accent-text font-serif italic' },
                 {
                   text: '실험을 기록하고, 실제 흐름에 적용하고, 다시 쓸 수 있게 확장합니다.',
                   className: 'text-gray-500',
@@ -507,7 +529,7 @@ function Process() {
             </p>
           </div>
 
-          <figure className="relative min-h-[480px] overflow-hidden lg:min-h-[680px]">
+          <figure className="relative min-h-[420px] overflow-hidden lg:min-h-[600px]">
             <img
               src="/media/lab-gyro.jpg"
               alt="빛나는 자이로 구조의 AI 생성 로보틱스 추상 키프레임"
@@ -526,7 +548,7 @@ function Process() {
           {stages.map((stage, index) => (
             <li
               key={stage.number}
-              className={`p-6 sm:p-8 md:p-10 ${index < stages.length - 1 ? 'border-b border-white/10 md:border-b-0 md:border-r' : ''}`}
+              className={`process-stage bg-black/10 p-6 sm:p-8 md:p-10 ${index < stages.length - 1 ? 'border-b border-white/10 md:border-b-0 md:border-r' : ''}`}
             >
               <div className="flex items-center justify-between gap-4 text-[10px] font-bold tracking-[0.14em] text-gray-400">
                 <span>({stage.number})</span>
@@ -539,20 +561,15 @@ function Process() {
           ))}
         </ol>
       </div>
-    </section>
+    </SectionShell>
   )
 }
 
 function Principles() {
   return (
-    <section
-      id="principles"
-      aria-labelledby="principles-title"
-      className="relative overflow-hidden bg-black px-4 py-20 md:px-6 md:py-28"
-    >
-      <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.1]" aria-hidden="true" />
-      <div className="relative z-10 mx-auto max-w-[1500px]">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary/70 sm:text-xs">
+    <SectionShell id="principles" labelledBy="principles-title" tone="gold" noise>
+      <div className="relative z-10 px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <p className="section-kicker text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
           Principles · AI 활용 원칙
         </p>
         <WordsPullUpMultiStyle
@@ -565,18 +582,14 @@ function Principles() {
           ]}
         />
 
-        <ol className="mt-14 grid border-y border-white/10 sm:grid-cols-2 lg:grid-cols-4">
-          {principles.map((principle, index) => (
+        <ol className="mt-10 grid gap-2 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
+          {principles.map((principle) => (
             <li
               key={principle.number}
-              className={`min-h-[280px] p-6 sm:p-8 ${
-                index % 2 === 0 ? 'border-r border-white/10' : ''
-              } ${index < 2 ? 'border-b border-white/10 lg:border-b-0' : ''} ${
-                index === 1 ? 'lg:border-r' : ''
-              }`}
+              className="principle-card min-h-[250px] rounded-xl border border-white/[0.07] bg-black/20 p-6 sm:p-8"
             >
               <span className="text-[10px] font-bold tracking-[0.18em] text-gray-400">({principle.number})</span>
-              <h3 className="mt-20 text-xl font-normal tracking-[-0.035em] text-primary sm:text-2xl">
+              <h3 className="mt-16 text-xl font-normal tracking-[-0.035em] text-primary sm:text-2xl">
                 {principle.title}
               </h3>
               <p className="mt-4 text-xs leading-[1.8] text-gray-400 sm:text-sm">{principle.body}</p>
@@ -584,7 +597,7 @@ function Principles() {
           ))}
         </ol>
 
-        <div id="contact" className="mt-16 overflow-hidden rounded-[1.75rem] bg-primary p-6 text-black sm:p-10 md:p-14">
+        <div id="contact" className="mt-10 overflow-hidden rounded-[1.5rem] bg-primary p-6 text-black sm:p-10 md:mt-12 md:rounded-[1.75rem] md:p-14">
           <div className="grid items-end gap-10 lg:grid-cols-12">
             <div className="lg:col-span-8">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-black/70 sm:text-xs">
@@ -625,14 +638,14 @@ function Principles() {
           </div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   )
 }
 
 function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black px-4 py-10 text-primary/60 md:px-6">
-      <div className="mx-auto flex max-w-[1500px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-sm font-bold text-primary">국민대학교 디지털AI혁신센터</p>
           <p className="mt-2 max-w-lg text-[10px] leading-relaxed text-gray-400 sm:text-xs">
