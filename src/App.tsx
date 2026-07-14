@@ -162,18 +162,24 @@ function Hero() {
     >
       <div className="relative h-full min-h-[648px] overflow-hidden rounded-2xl bg-neutral-950 md:rounded-[2rem]">
         <img
-          src="/media/hero-auditorium.jpg"
+          src="/media/hero-office-pixel-v2.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[62%_center]"
+          className="absolute inset-0 h-full w-full object-cover object-[26%_center] md:object-center"
           fetchPriority="high"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/95"
+          className="hero-pixel-overlay pointer-events-none absolute inset-0"
           aria-hidden="true"
         />
         <div
-          className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.42] mix-blend-overlay"
+          className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.08] mix-blend-soft-light md:opacity-[0.12]"
+          aria-hidden="true"
+        />
+        <img
+          src="/media/hero-team-sprite-v2.png"
+          alt=""
+          className="hero-team-sprite pointer-events-none absolute left-1/2 top-[20%] z-[5] w-[52vw] max-w-[230px] sm:top-[13%] sm:w-[38vw] sm:max-w-[300px] md:top-[11%] md:w-[27vw] md:max-w-[350px] lg:top-[13%] lg:w-[23vw] lg:max-w-[380px]"
           aria-hidden="true"
         />
 
@@ -205,13 +211,13 @@ function Hero() {
         </nav>
 
         <div className="absolute inset-x-0 top-14 z-10 flex items-start justify-between gap-4 px-5 md:top-10 md:px-8 lg:px-10">
-          <div className="text-[9px] font-bold uppercase leading-relaxed tracking-[0.16em] text-primary/75 sm:text-[10px] md:text-xs">
+          <div className="rounded-lg bg-black/45 px-2.5 py-1.5 text-[9px] font-bold uppercase leading-relaxed tracking-[0.16em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-[10px] md:text-xs">
             <span className="block">Kookmin University</span>
             <span className="block">Digital AI Innovation Center</span>
           </div>
-          <div className="text-right text-[9px] uppercase tracking-[0.16em] text-primary/75 sm:text-[10px]">
-            <span className="block">AI-generated concept visual</span>
-            <span className="block">Training asset · 2026</span>
+          <div className="rounded-lg bg-black/45 px-2.5 py-1.5 text-right text-[9px] uppercase tracking-[0.16em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-[10px]">
+            <span className="block">AI-generated pixel-art scene</span>
+            <span className="block">Concept visual · 2026</span>
           </div>
         </div>
 
@@ -223,16 +229,16 @@ function Hero() {
                 showAsterisk
                 as="h1"
                 id="hero-title"
-                className="whitespace-nowrap text-[17.5vw] font-medium leading-[0.86] tracking-[-0.075em] text-[#E1E0CC] sm:text-[16.5vw] md:text-[15.5vw] lg:text-[13.5vw] xl:text-[12.5vw] 2xl:text-[11.5vw]"
+                className="whitespace-nowrap text-[17.5vw] font-medium leading-[0.86] tracking-[-0.075em] text-[#F2EFDC] drop-shadow-[0_4px_18px_rgba(0,0,0,0.78)] sm:text-[16.5vw] md:text-[15.5vw] lg:text-[13.5vw] xl:text-[12.5vw] 2xl:text-[11.5vw]"
               />
-              <p className="mt-3 text-[10px] text-primary/70 sm:text-xs">
+              <p className="mt-3 text-[11px] font-medium text-primary/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)] sm:text-xs">
                 * 사람의 판단과 검증으로 완성합니다.
               </p>
             </div>
 
             <div className="flex max-w-lg flex-col items-start gap-5 lg:col-span-4 lg:pb-1">
               <motion.p
-                className="text-sm leading-[1.55] text-primary/80 md:text-base"
+                className="text-sm leading-[1.6] text-primary/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] md:text-base"
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -256,7 +262,7 @@ function Hero() {
               >
                 <a
                   href="#projects"
-                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1 pl-5 pr-1 text-sm font-medium text-black transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
+                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1 pl-5 pr-1 text-sm font-medium text-black shadow-[0_6px_22px_rgba(0,0,0,0.38)] transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
                 >
                   주요 프로젝트
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-primary transition-transform duration-300 motion-safe:group-hover:scale-110 sm:h-10 sm:w-10">
@@ -267,7 +273,7 @@ function Hero() {
                   href={GITHUB_PROFILE}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs text-primary/75 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-black/45 px-4 py-2 text-xs text-primary/95 ring-1 ring-white/15 backdrop-blur-[1px] transition-colors hover:bg-black/65 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm"
                 >
                   GitHub
                   <ArrowUpRight size={14} aria-hidden="true" />
@@ -343,9 +349,10 @@ type AnimatedCardProps = {
   children: ReactNode
   className?: string
   delay?: number
+  labelledBy?: string
 }
 
-function AnimatedCard({ children, className = '', delay = 0 }: AnimatedCardProps) {
+function AnimatedCard({ children, className = '', delay = 0, labelledBy }: AnimatedCardProps) {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const shouldReduceMotion = useReducedMotion()
@@ -353,6 +360,7 @@ function AnimatedCard({ children, className = '', delay = 0 }: AnimatedCardProps
   return (
     <motion.article
       ref={ref}
+      aria-labelledby={labelledBy}
       className={className}
       initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.97 }}
       animate={inView ? { opacity: 1, scale: 1 } : undefined}
@@ -397,14 +405,15 @@ function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:gap-5">
           {projects.map((project, index) => (
             <AnimatedCard
               key={project.number}
               delay={index * 0.1}
-              className="group overflow-hidden rounded-[1.75rem] border border-white/[0.06] bg-[#171717]"
+              labelledBy={`project-${project.number}-title`}
+              className="group overflow-hidden rounded-[1.75rem] border border-white/[0.06] bg-[#171717] md:grid md:grid-cols-12"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#212121]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#212121] md:col-span-5 md:aspect-auto md:min-h-[420px] lg:min-h-[480px]">
                 <img
                   src={project.image}
                   alt={project.alt}
@@ -422,11 +431,14 @@ function Projects() {
                 </span>
               </div>
 
-              <div className="p-6 sm:p-7 md:p-8">
+              <div className="min-w-0 p-6 sm:p-7 md:col-span-7 md:flex md:flex-col md:justify-center md:p-8 lg:p-10">
                 <p className="text-[9px] font-bold tracking-[0.18em] text-gray-400 sm:text-[10px]">
                   {project.category}
                 </p>
-                <h3 className="mt-3 text-2xl font-normal tracking-[-0.045em] text-primary sm:text-3xl md:text-4xl">
+                <h3
+                  id={`project-${project.number}-title`}
+                  className="mt-3 text-2xl font-normal tracking-[-0.045em] text-primary sm:text-3xl md:text-4xl"
+                >
                   {project.title}
                 </h3>
                 <p className="mt-4 max-w-xl text-sm leading-[1.7] text-gray-400 sm:text-base">
