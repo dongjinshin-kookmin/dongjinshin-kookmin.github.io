@@ -7,7 +7,7 @@ export default {
         primary: '#DEDBC8',
       },
       fontFamily: {
-        sans: ['Almarai', 'sans-serif'],
+        sans: ['Inter', '"Noto Sans KR"', 'sans-serif'],
         serif: ['"Instrument Serif"', 'serif'],
       },
     },

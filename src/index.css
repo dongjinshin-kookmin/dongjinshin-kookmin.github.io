@@ -15,7 +15,7 @@
 }
 
 * {
-  font-family: 'Almarai', 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system,
+  font-family: 'Inter', 'Noto Sans KR', 'Apple SD Gothic Neo', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
 }
 
@@ -30,7 +30,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  color: #dedbc8;
+  color: #1b133c;
   background: #000;
 }
 
@@ -44,23 +44,15 @@ a {
   height: 100svh;
 }
 
-.hero-pixel-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(2, 8, 16, 0.34) 0%,
-    rgba(2, 8, 16, 0.04) 34%,
-    rgba(0, 0, 0, 0.24) 56%,
-    rgba(0, 0, 0, 0.78) 76%,
-    rgba(0, 0, 0, 0.95) 100%
-  );
+.hero-video-wash {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.08), transparent 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(248, 244, 255, 0.2));
 }
 
-.hero-team-sprite {
-  transform: translateX(-50%);
-  transform-origin: center bottom;
-  filter: drop-shadow(0 12px 14px rgba(3, 14, 22, 0.34));
-  animation: hero-team-bob 3.2s steps(6, end) infinite;
-  will-change: transform;
+.hero-institution-title,
+.hero-institution-title * {
+  font-family: 'Noto Sans KR', 'Inter', 'Apple SD Gothic Neo', sans-serif;
 }
 
 .section-panel {
@@ -233,25 +225,6 @@ a {
   animation-delay: 9s;
 }
 
-@keyframes hero-team-bob {
-  0%,
-  100% {
-    transform: translate3d(-50%, 0, 0) rotate(-0.35deg);
-  }
-
-  25% {
-    transform: translate3d(-50%, -5px, 0) rotate(0.15deg);
-  }
-
-  50% {
-    transform: translate3d(-50%, -2px, 0) rotate(0.35deg);
-  }
-
-  75% {
-    transform: translate3d(-50%, -7px, 0) rotate(-0.1deg);
-  }
-}
-
 @keyframes pixel-data-hop {
   0%,
   12% {
@@ -353,11 +326,6 @@ a {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .hero-team-sprite {
-    animation: none !important;
-    transform: translateX(-50%);
   }
 
   .about-proof-grid::before,

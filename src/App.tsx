@@ -5,6 +5,8 @@ import { ScrollOpacityText } from './components/ScrollOpacityText'
 import { WordsPullUpMultiStyle } from './components/WordsPullUp'
 
 const GITHUB_PROFILE = 'https://github.com/dongjinshin-kookmin'
+const HERO_VIDEO =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4'
 
 const navItems = [
   { label: '소개', href: '#about' },
@@ -151,143 +153,144 @@ const principles = [
   },
 ]
 
+function CenterMark() {
+  return (
+    <svg viewBox="0 0 256 256" className="h-6 w-6" aria-hidden="true">
+      <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z" fill="currentColor" />
+      <path d="M 256 128 L 128 128 L 0 0 L 128 0 Z" fill="currentColor" />
+    </svg>
+  )
+}
+
 function Hero() {
   const shouldReduceMotion = useReducedMotion()
+  const primaryTitle = ['국', '민', '대', '학', '교']
+  const secondaryTitle = ['디', '지', '털', 'AI', '혁', '신', '센', '터']
+  const titleTransition = (delay: number) => ({
+    duration: shouldReduceMotion ? 0 : 0.75,
+    delay: shouldReduceMotion ? 0 : delay,
+    ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+  })
 
   return (
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="hero-viewport min-h-[680px] bg-black p-4 md:p-6"
+      className="hero-viewport relative flex min-h-[680px] w-full flex-col overflow-hidden bg-[#eeebfb] text-[#1B133C]"
     >
-      <div className="relative h-full min-h-[648px] overflow-hidden rounded-2xl bg-neutral-950 md:rounded-[2rem]">
-        <img
-          src="/media/hero-office-photo-pixel-v3.jpg"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[60%_center] md:object-center"
-          fetchPriority="high"
-          aria-hidden="true"
-        />
-        <div
-          className="hero-pixel-overlay pointer-events-none absolute inset-0"
-          aria-hidden="true"
-        />
-        <div
-          className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.08] mix-blend-soft-light md:opacity-[0.12]"
-          aria-hidden="true"
-        />
-        <img
-          src="/media/hero-team-sprite-v2.png"
-          alt=""
-          className="hero-team-sprite pointer-events-none absolute bottom-[40.5%] left-1/2 z-[5] w-[52vw] max-w-[230px] sm:bottom-[36%] sm:w-[38vw] sm:max-w-[300px] md:bottom-[34%] md:w-[27vw] md:max-w-[350px] lg:bottom-[35%] lg:w-[23vw] lg:max-w-[380px]"
-          aria-hidden="true"
-        />
+      <video
+        src={HERO_VIDEO}
+        autoPlay={!shouldReduceMotion}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 z-0 h-[130%] w-full object-cover object-top"
+        aria-hidden="true"
+      />
+      <div className="hero-video-wash pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
 
-        <a
-          href="#main-content"
-          className="absolute left-4 top-4 z-50 -translate-y-24 rounded-full bg-primary px-4 py-2 text-base font-bold text-black transition-transform focus:translate-y-0 sm:text-lg"
-        >
-          본문 바로가기
-        </a>
+      <a
+        href="#about"
+        className="absolute left-4 top-4 z-50 -translate-y-24 rounded-xl bg-white px-4 py-2 text-base font-semibold text-[#1B133C] shadow-sm transition-transform focus:translate-y-0"
+      >
+        본문 바로가기
+      </a>
 
+      <div className="relative z-20 flex justify-center px-4 pt-4 md:pt-6">
         <nav
           aria-label="주요 메뉴"
-          className="absolute left-1/2 top-0 z-20 w-max max-w-[calc(100%-1rem)] -translate-x-1/2 overflow-x-auto overscroll-x-contain rounded-b-2xl bg-black px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:rounded-b-3xl md:px-8"
+          className="inline-flex items-center rounded-xl border border-white/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-md md:px-6"
         >
-          <div className="flex items-center gap-4 whitespace-nowrap sm:gap-7 md:gap-10 lg:gap-12">
+          <a
+            href="#hero"
+            aria-label="국민대학교 디지털AI혁신센터 홈"
+            className="rounded-sm text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]"
+          >
+            <CenterMark />
+          </a>
+          <div className="ml-7 hidden items-center gap-6 whitespace-nowrap sm:flex md:ml-10 md:gap-9">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
-                style={{ color: 'rgba(225, 224, 204, 0.8)' }}
-                className="rounded-sm text-xs transition-colors hover:!text-[#E1E0CC] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm md:text-base"
+                className="rounded-sm text-sm font-medium text-[#1B133C]/80 transition-colors duration-300 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]"
               >
                 {item.label}
               </a>
             ))}
           </div>
         </nav>
+      </div>
 
-        <div className="absolute inset-x-0 top-14 z-10 flex items-start justify-between gap-3 px-5 md:top-12 md:px-8 lg:px-10">
-          <div className="min-w-0 max-w-[46%] rounded-lg bg-black/45 px-2.5 py-1.5 text-[10px] font-bold uppercase leading-relaxed tracking-[0.12em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-xs sm:tracking-[0.16em] md:text-sm">
-            <span className="block">Kookmin University</span>
-            <span className="block">Digital AI Innovation Center</span>
-          </div>
-          <div className="min-w-0 max-w-[46%] rounded-lg bg-black/45 px-2.5 py-1.5 text-right text-[10px] uppercase leading-relaxed tracking-[0.12em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-xs sm:tracking-[0.16em] md:text-sm">
-            <span className="block">AI-generated pixel-art scene</span>
-            <span className="block">Photo-based concept · 2026</span>
-          </div>
-        </div>
+      <div className="relative z-10 mx-auto mt-8 flex w-full flex-1 flex-col items-center px-5 text-center md:mt-14 md:px-8">
+        <motion.div
+          className="mb-6 inline-flex max-w-full items-center gap-2.5 rounded-xl border border-[#1B133C]/10 bg-white/70 px-4 py-2 text-xs font-medium text-[#1B133C] shadow-sm backdrop-blur-sm sm:text-sm"
+          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={titleTransition(0.1)}
+        >
+          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-orange-500 text-xs font-bold text-white">
+            K
+          </span>
+          <span>Kookmin University · Since 2025</span>
+        </motion.div>
 
-        <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 pt-28 md:px-8 md:pb-8 lg:px-10 lg:pb-10">
-          <div className="grid w-full grid-cols-1 items-end gap-7 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-8">
-              <WordsPullUpMultiStyle
-                as="h1"
-                id="hero-title"
-                className="w-full justify-center text-center font-medium leading-[0.82] tracking-[-0.075em] text-[#F2EFDC] drop-shadow-[0_4px_18px_rgba(0,0,0,0.78)] lg:justify-start lg:text-left"
-                segments={[
-                  {
-                    text: '국민대학교',
-                    className: 'whitespace-nowrap text-[16vw] sm:text-[17.5vw] lg:text-[11.5vw] xl:text-[12vw]',
-                  },
-                  {
-                    text: '디지털AI혁신센터',
-                    className: 'whitespace-nowrap text-[10vw] sm:text-[11vw] lg:text-[7.4vw] xl:text-[7.8vw]',
-                    breakBefore: true,
-                  },
-                ]}
-              />
-            </div>
+        <h1
+          id="hero-title"
+          aria-label="국민대학교 디지털AI혁신센터"
+          className="hero-institution-title w-[86vw] max-w-[800px] text-[#1B133C]"
+        >
+          <motion.span
+            aria-hidden="true"
+            className="flex w-full items-center justify-between whitespace-nowrap text-[16vw] font-extrabold leading-[0.9] sm:text-[14vw] lg:text-[clamp(7.25rem,8.5vw,8rem)]"
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={titleTransition(0.2)}
+          >
+            {primaryTitle.map((character, index) => (
+              <span key={`${character}-${index}`}>{character}</span>
+            ))}
+          </motion.span>
+          <motion.span
+            aria-hidden="true"
+            className="mt-1 flex w-full items-center justify-between whitespace-nowrap text-[10.3vw] font-light leading-[0.95] sm:text-[9vw] lg:text-[clamp(4.7rem,5.5vw,5.2rem)]"
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={titleTransition(0.3)}
+          >
+            {secondaryTitle.map((character, index) => (
+              <span key={`${character}-${index}`}>{character}</span>
+            ))}
+          </motion.span>
+        </h1>
 
-            <div className="flex max-w-lg flex-col items-start gap-5 lg:col-span-4 lg:pb-1">
-              <motion.p
-                className="text-base leading-[1.65] text-primary/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] md:text-lg lg:text-xl"
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0 : 0.65,
-                  delay: shouldReduceMotion ? 0 : 0.5,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                국민대학교 디지털AI혁신센터는 생성형 AI·데이터·자동화 기술을 행정,
-                교육, 콘텐츠 제작의 실제 문제에 연결합니다.
-              </motion.p>
-              <motion.div
-                className="flex flex-wrap items-center gap-3"
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0 : 0.65,
-                  delay: shouldReduceMotion ? 0 : 0.7,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                <a
-                  href="#projects"
-                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1 pl-5 pr-1 text-base font-medium text-black shadow-[0_6px_22px_rgba(0,0,0,0.38)] transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-lg"
-                >
-                  주요 프로젝트
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-primary transition-transform duration-300 motion-safe:group-hover:scale-110 sm:h-10 sm:w-10">
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </span>
-                </a>
-                <a
-                  href={GITHUB_PROFILE}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-black/45 px-4 py-2 text-sm text-primary/95 ring-1 ring-white/15 backdrop-blur-[1px] transition-colors hover:bg-black/65 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
-                >
-                  GitHub
-                  <ArrowUpRight size={14} aria-hidden="true" />
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+        <motion.p
+          className="mt-5 max-w-3xl text-sm leading-relaxed text-[#1B133C]/70 sm:mt-6 sm:text-base md:text-lg"
+          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={titleTransition(0.45)}
+        >
+          국민대학교 디지털AI혁신센터는 생성형 AI·데이터·자동화 기술을 행정, 교육,
+          콘텐츠 제작의 실제 문제에 연결합니다.
+        </motion.p>
+
+        <motion.a
+          href="#projects"
+          className="group mt-7 inline-flex items-center gap-2 rounded-xl bg-[#FEFEFE] px-6 py-3 text-sm font-semibold text-[#1B133C] shadow-[0px_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0px_6px_16px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:mt-8 sm:px-8 sm:py-3.5 sm:text-base"
+          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={titleTransition(0.6)}
+        >
+          프로젝트 살펴보기
+          <ArrowRight
+            size={18}
+            className="transition-transform duration-300 group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
+        </motion.a>
       </div>
     </section>
   )
