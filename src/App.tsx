@@ -162,9 +162,9 @@ function Hero() {
     >
       <div className="relative h-full min-h-[648px] overflow-hidden rounded-2xl bg-neutral-950 md:rounded-[2rem]">
         <img
-          src="/media/hero-office-pixel-v2.jpg"
+          src="/media/hero-office-photo-pixel-v3.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[26%_center] md:object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[60%_center] md:object-center"
           fetchPriority="high"
           aria-hidden="true"
         />
@@ -217,7 +217,7 @@ function Hero() {
           </div>
           <div className="rounded-lg bg-black/45 px-2.5 py-1.5 text-right text-[9px] uppercase tracking-[0.16em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-[10px]">
             <span className="block">AI-generated pixel-art scene</span>
-            <span className="block">Concept visual · 2026</span>
+            <span className="block">Photo-based concept · 2026</span>
           </div>
         </div>
 
