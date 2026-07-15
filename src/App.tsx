@@ -2,7 +2,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { ArrowRight, ArrowUpRight, Check, Github } from 'lucide-react'
 import { useRef, type ReactNode } from 'react'
 import { ScrollOpacityText } from './components/ScrollOpacityText'
-import { WordsPullUp, WordsPullUpMultiStyle } from './components/WordsPullUp'
+import { WordsPullUpMultiStyle } from './components/WordsPullUp'
 
 const GITHUB_PROFILE = 'https://github.com/dongjinshin-kookmin'
 
@@ -185,7 +185,7 @@ function Hero() {
 
         <a
           href="#main-content"
-          className="absolute left-4 top-4 z-50 -translate-y-24 rounded-full bg-primary px-4 py-2 text-sm font-bold text-black transition-transform focus:translate-y-0"
+          className="absolute left-4 top-4 z-50 -translate-y-24 rounded-full bg-primary px-4 py-2 text-base font-bold text-black transition-transform focus:translate-y-0 sm:text-lg"
         >
           본문 바로가기
         </a>
@@ -202,7 +202,7 @@ function Hero() {
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
                 style={{ color: 'rgba(225, 224, 204, 0.8)' }}
-                className="rounded-sm text-[10px] transition-colors hover:!text-[#E1E0CC] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-xs md:text-sm"
+                className="rounded-sm text-xs transition-colors hover:!text-[#E1E0CC] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm md:text-base"
               >
                 {item.label}
               </a>
@@ -210,12 +210,12 @@ function Hero() {
           </div>
         </nav>
 
-        <div className="absolute inset-x-0 top-14 z-10 flex items-start justify-between gap-4 px-5 md:top-10 md:px-8 lg:px-10">
-          <div className="rounded-lg bg-black/45 px-2.5 py-1.5 text-[9px] font-bold uppercase leading-relaxed tracking-[0.16em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-[10px] md:text-xs">
+        <div className="absolute inset-x-0 top-14 z-10 flex items-start justify-between gap-3 px-5 md:top-12 md:px-8 lg:px-10">
+          <div className="min-w-0 max-w-[46%] rounded-lg bg-black/45 px-2.5 py-1.5 text-[10px] font-bold uppercase leading-relaxed tracking-[0.12em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-xs sm:tracking-[0.16em] md:text-sm">
             <span className="block">Kookmin University</span>
             <span className="block">Digital AI Innovation Center</span>
           </div>
-          <div className="rounded-lg bg-black/45 px-2.5 py-1.5 text-right text-[9px] uppercase tracking-[0.16em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-[10px]">
+          <div className="min-w-0 max-w-[46%] rounded-lg bg-black/45 px-2.5 py-1.5 text-right text-[10px] uppercase leading-relaxed tracking-[0.12em] text-primary/95 shadow-[0_2px_10px_rgba(0,0,0,0.28)] ring-1 ring-white/10 backdrop-blur-[1px] sm:text-xs sm:tracking-[0.16em] md:text-sm">
             <span className="block">AI-generated pixel-art scene</span>
             <span className="block">Photo-based concept · 2026</span>
           </div>
@@ -224,21 +224,27 @@ function Hero() {
         <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 pt-28 md:px-8 md:pb-8 lg:px-10 lg:pb-10">
           <div className="grid w-full grid-cols-1 items-end gap-7 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-8">
-              <WordsPullUp
-                text="AI, 실제로."
-                showAsterisk
+              <WordsPullUpMultiStyle
                 as="h1"
                 id="hero-title"
-                className="whitespace-nowrap text-[17.5vw] font-medium leading-[0.86] tracking-[-0.075em] text-[#F2EFDC] drop-shadow-[0_4px_18px_rgba(0,0,0,0.78)] sm:text-[16.5vw] md:text-[15.5vw] lg:text-[13.5vw] xl:text-[12.5vw] 2xl:text-[11.5vw]"
+                className="w-full justify-center text-center font-medium leading-[0.82] tracking-[-0.075em] text-[#F2EFDC] drop-shadow-[0_4px_18px_rgba(0,0,0,0.78)] lg:justify-start lg:text-left"
+                segments={[
+                  {
+                    text: '국민대학교',
+                    className: 'whitespace-nowrap text-[16vw] sm:text-[17.5vw] lg:text-[11.5vw] xl:text-[12vw]',
+                  },
+                  {
+                    text: '디지털AI혁신센터',
+                    className: 'whitespace-nowrap text-[10vw] sm:text-[11vw] lg:text-[7.4vw] xl:text-[7.8vw]',
+                    breakBefore: true,
+                  },
+                ]}
               />
-              <p className="mt-3 text-[11px] font-medium text-primary/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)] sm:text-xs">
-                * 사람의 판단과 검증으로 완성합니다.
-              </p>
             </div>
 
             <div className="flex max-w-lg flex-col items-start gap-5 lg:col-span-4 lg:pb-1">
               <motion.p
-                className="text-sm leading-[1.6] text-primary/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] md:text-base"
+                className="text-base leading-[1.65] text-primary/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] md:text-lg lg:text-xl"
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -262,7 +268,7 @@ function Hero() {
               >
                 <a
                   href="#projects"
-                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1 pl-5 pr-1 text-sm font-medium text-black shadow-[0_6px_22px_rgba(0,0,0,0.38)] transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
+                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1 pl-5 pr-1 text-base font-medium text-black shadow-[0_6px_22px_rgba(0,0,0,0.38)] transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-lg"
                 >
                   주요 프로젝트
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-primary transition-transform duration-300 motion-safe:group-hover:scale-110 sm:h-10 sm:w-10">
@@ -273,7 +279,7 @@ function Hero() {
                   href={GITHUB_PROFILE}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-black/45 px-4 py-2 text-xs text-primary/95 ring-1 ring-white/15 backdrop-blur-[1px] transition-colors hover:bg-black/65 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-black/45 px-4 py-2 text-sm text-primary/95 ring-1 ring-white/15 backdrop-blur-[1px] transition-colors hover:bg-black/65 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
                 >
                   GitHub
                   <ArrowUpRight size={14} aria-hidden="true" />
@@ -323,14 +329,14 @@ function About() {
   return (
     <SectionShell id="about" labelledBy="about-title" tone="coral">
       <div className="relative z-10 flex flex-col items-center px-5 py-14 text-center sm:px-7 md:px-10 md:py-16 lg:px-14 lg:py-20">
-        <p className="section-kicker mb-7 text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs md:mb-9">
+        <p className="section-kicker mb-7 text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em] md:mb-9">
           Kookmin University · Digital AI Innovation Center
         </p>
 
         <WordsPullUpMultiStyle
           as="h2"
           id="about-title"
-          className="mx-auto max-w-5xl text-3xl font-normal leading-[0.98] text-primary sm:text-4xl md:text-5xl lg:text-6xl"
+          className="mx-auto max-w-5xl justify-center text-center text-[clamp(2.25rem,12vw,3rem)] font-normal leading-[1.02] text-primary sm:leading-[0.98] md:text-6xl lg:text-7xl"
           segments={[
             { text: 'AI를 보여 주는 것에서,', className: 'font-normal' },
             {
@@ -348,7 +354,7 @@ function About() {
 
         <ScrollOpacityText
           text={bodyCopy}
-          className="mt-10 max-w-3xl text-sm leading-[1.9] text-[#DEDBC8] sm:text-base md:mt-12 md:text-lg"
+          className="mt-10 max-w-4xl text-base leading-[1.85] text-[#DEDBC8] sm:text-lg md:mt-12 md:text-xl lg:text-2xl"
         />
 
         <dl className="about-proof-grid mt-10 grid w-full grid-cols-2 gap-2 text-left md:mt-14 md:grid-cols-4">
@@ -357,11 +363,11 @@ function About() {
               key={stat.label}
               className="flex flex-col rounded-xl border border-white/[0.07] bg-black/20 px-3 py-5 sm:px-5 md:py-6"
             >
-              <dt className="order-2 mt-3 text-xs font-bold text-primary/85 sm:text-sm">{stat.label}</dt>
-              <dd className="order-1 text-4xl font-light tracking-[-0.06em] text-primary sm:text-5xl lg:text-6xl">
+              <dt className="order-2 mt-3 text-sm font-bold text-primary/85 sm:text-base">{stat.label}</dt>
+              <dd className="order-1 text-[clamp(3rem,13vw,3.75rem)] font-light tracking-[-0.06em] text-primary lg:text-7xl">
                 {stat.value}
               </dd>
-              <dd className="order-3 mt-1 text-[10px] leading-relaxed text-gray-400 sm:text-xs">{stat.note}</dd>
+              <dd className="order-3 mt-1 text-xs leading-relaxed text-gray-400 sm:text-sm">{stat.note}</dd>
             </div>
           ))}
         </dl>
@@ -404,14 +410,14 @@ function Projects() {
   return (
     <SectionShell id="projects" labelledBy="projects-title" tone="mint" noise>
       <div className="relative z-10 px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
-        <p className="section-kicker mb-6 text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
+        <p className="section-kicker mb-6 text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em]">
           Selected work · 주요 프로젝트
         </p>
-        <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:mb-12 lg:flex-row lg:items-end lg:justify-between">
           <WordsPullUpMultiStyle
             as="h2"
             id="projects-title"
-            className="max-w-4xl justify-start text-left text-3xl font-normal leading-[1.05] sm:text-4xl md:text-5xl lg:text-6xl"
+            className="max-w-5xl justify-start text-left text-[clamp(2.25rem,12vw,3rem)] font-normal leading-[1.02] sm:leading-[0.98] md:text-6xl lg:text-7xl"
             segments={[
               { text: '실험을 넘어, 작동하는 결과로.', className: 'text-[#E1E0CC]' },
               {
@@ -421,7 +427,7 @@ function Projects() {
               },
             ]}
           />
-          <p className="max-w-sm text-xs leading-relaxed text-gray-400 sm:text-sm">
+          <p className="max-w-lg text-sm leading-[1.75] text-gray-400 sm:text-base md:text-lg">
             상태, 제약, 데이터 범위를 구분해 공개합니다. 수치는 현재 빌드와 작업 기록을 기준으로
             확인했습니다.
           </p>
@@ -445,38 +451,38 @@ function Projects() {
                   style={{ objectPosition: project.imagePosition }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/45" aria-hidden="true" />
-                <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/70 px-3 py-1.5 text-[9px] font-bold tracking-[0.14em] text-primary backdrop-blur sm:left-5 sm:top-5 sm:text-[10px]">
+                <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/70 px-3 py-1.5 text-[10px] font-bold tracking-[0.12em] text-primary backdrop-blur sm:left-5 sm:top-5 sm:text-xs">
                   {project.status}
                 </div>
-                <span className="absolute right-4 top-4 text-[10px] font-bold tracking-[0.18em] text-primary/65 sm:right-5 sm:top-5">
+                <span className="absolute right-4 top-4 text-xs font-bold tracking-[0.14em] text-primary/65 sm:right-5 sm:top-5 sm:text-sm">
                   ({project.number})
                 </span>
               </div>
 
               <div className="min-w-0 p-6 sm:p-7 md:col-span-7 md:flex md:flex-col md:justify-center md:p-8 lg:p-10">
-                <p className="text-[9px] font-bold tracking-[0.18em] text-gray-400 sm:text-[10px]">
+                <p className="text-[10px] font-bold tracking-[0.1em] text-gray-400 sm:text-xs sm:tracking-[0.14em] md:text-sm">
                   {project.category}
                 </p>
                 <h3
                   id={`project-${project.number}-title`}
-                  className="mt-3 text-2xl font-normal tracking-[-0.045em] text-primary sm:text-3xl md:text-4xl"
+                  className="mt-3 text-[clamp(1.875rem,8vw,2.25rem)] font-normal tracking-[-0.045em] text-primary md:text-5xl"
                 >
                   {project.title}
                 </h3>
-                <p className="mt-4 max-w-xl text-sm leading-[1.7] text-gray-400 sm:text-base">
+                <p className="mt-4 max-w-2xl text-base leading-[1.75] text-gray-400 sm:text-lg md:text-xl">
                   {project.summary}
                 </p>
 
                 <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
                   {project.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-xs leading-relaxed text-gray-400 sm:text-sm">
-                      <Check size={14} strokeWidth={1.5} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-gray-400 sm:text-base">
+                      <Check size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <p className="mt-6 border-l border-primary/40 pl-3 text-[10px] leading-relaxed text-gray-400 sm:text-xs">
+                <p className="mt-6 border-l border-primary/40 pl-3 text-xs leading-relaxed text-gray-400 sm:text-sm">
                   {project.note}
                 </p>
 
@@ -484,11 +490,11 @@ function Projects() {
                   href={project.href}
                   target={project.external ? '_blank' : undefined}
                   rel={project.external ? 'noreferrer' : undefined}
-                  className="mt-7 inline-flex items-center gap-2 rounded-sm text-xs font-bold text-primary/85 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm"
+                  className="mt-7 inline-flex items-center gap-2 rounded-sm text-sm font-bold text-primary/85 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
                   aria-label={`${project.title} — ${project.linkLabel}${project.external ? ' (새 창)' : ''}`}
                 >
                   {project.linkLabel}
-                  {project.external ? <ArrowUpRight size={15} aria-hidden="true" /> : <ArrowRight size={15} aria-hidden="true" />}
+                  {project.external ? <ArrowUpRight size={16} aria-hidden="true" /> : <ArrowRight size={16} aria-hidden="true" />}
                 </a>
               </div>
             </AnimatedCard>
@@ -505,13 +511,13 @@ function Process() {
       <div className="relative z-10">
         <div className="grid lg:grid-cols-2">
           <div className="flex flex-col justify-center px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
-            <p className="section-kicker text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
+            <p className="section-kicker text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em]">
               From experiment to impact · 2025—Now
             </p>
             <WordsPullUpMultiStyle
               as="h2"
               id="process-title"
-              className="mt-8 justify-start text-left text-4xl font-normal leading-[0.95] sm:text-5xl md:text-6xl"
+              className="mt-8 justify-start text-left text-[clamp(2.75rem,12.5vw,3.75rem)] font-normal leading-[1] sm:leading-[0.95] md:text-7xl xl:text-8xl"
               segments={[
                 { text: 'Experiment.', className: 'section-accent-text font-serif italic' },
                 { text: 'Apply.', className: 'section-accent-text font-serif italic' },
@@ -523,7 +529,7 @@ function Process() {
                 },
               ]}
             />
-            <p className="mt-8 max-w-xl text-sm leading-[1.8] text-gray-400 sm:text-base">
+            <p className="mt-8 max-w-2xl text-base leading-[1.8] text-gray-400 sm:text-lg lg:text-xl">
               도구 목록보다 문제 해결의 흐름을 남깁니다. 채택안과 탈락안, 검증 과정과 다음
               단계까지 기록해야 한 번의 실험이 조직의 자산이 됩니다.
             </p>
@@ -538,7 +544,7 @@ function Process() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10" aria-hidden="true" />
-            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-[10px] leading-relaxed text-primary/70 sm:p-8 sm:text-xs">
+            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-xs leading-relaxed text-primary/70 sm:p-8 sm:text-sm">
               AI 생성 콘셉트 키프레임 · Higgsfield R&D v5 · 진행 중 · 최종 영상 없음
             </figcaption>
           </figure>
@@ -550,13 +556,13 @@ function Process() {
               key={stage.number}
               className={`process-stage bg-black/10 p-6 sm:p-8 md:p-10 ${index < stages.length - 1 ? 'border-b border-white/10 md:border-b-0 md:border-r' : ''}`}
             >
-              <div className="flex items-center justify-between gap-4 text-[10px] font-bold tracking-[0.14em] text-gray-400">
+              <div className="flex items-center justify-between gap-4 text-xs font-bold tracking-[0.1em] text-gray-400 lg:text-sm">
                 <span>({stage.number})</span>
                 <span>{stage.period}</span>
               </div>
-              <p className="mt-10 font-serif text-2xl italic text-primary/60">{stage.english}</p>
-              <h3 className="mt-1 text-3xl font-normal tracking-[-0.04em] text-primary">{stage.title}</h3>
-              <p className="mt-5 text-sm leading-[1.8] text-gray-400">{stage.body}</p>
+              <p className="mt-10 font-serif text-3xl italic text-primary/60 md:text-[2rem] lg:text-4xl xl:text-5xl">{stage.english}</p>
+              <h3 className="mt-1 text-4xl font-normal tracking-[-0.04em] text-primary md:text-5xl lg:text-6xl">{stage.title}</h3>
+              <p className="mt-5 text-base leading-[1.8] text-gray-400 lg:text-lg">{stage.body}</p>
             </li>
           ))}
         </ol>
@@ -569,13 +575,13 @@ function Principles() {
   return (
     <SectionShell id="principles" labelledBy="principles-title" tone="gold" noise>
       <div className="relative z-10 px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
-        <p className="section-kicker text-[10px] font-bold uppercase tracking-[0.18em] sm:text-xs">
+        <p className="section-kicker text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em]">
           Principles · AI 활용 원칙
         </p>
         <WordsPullUpMultiStyle
           as="h2"
           id="principles-title"
-          className="mt-8 max-w-4xl justify-start text-left text-4xl font-normal leading-[0.98] sm:text-5xl md:text-6xl"
+          className="mt-8 max-w-5xl justify-start text-left text-[clamp(2.75rem,12.5vw,3.75rem)] font-normal leading-[1] sm:leading-[0.95] md:text-7xl xl:text-8xl"
           segments={[
             { text: '빠르게 만들되,', className: 'text-primary' },
             { text: '책임을 생략하지 않습니다.', className: 'text-gray-500', breakBefore: true },
@@ -586,13 +592,13 @@ function Principles() {
           {principles.map((principle) => (
             <li
               key={principle.number}
-              className="principle-card min-h-[250px] rounded-xl border border-white/[0.07] bg-black/20 p-6 sm:p-8"
+              className="principle-card min-h-[280px] rounded-xl border border-white/[0.07] bg-black/20 p-6 sm:min-h-[300px] sm:p-8 lg:min-h-[340px]"
             >
-              <span className="text-[10px] font-bold tracking-[0.18em] text-gray-400">({principle.number})</span>
-              <h3 className="mt-16 text-xl font-normal tracking-[-0.035em] text-primary sm:text-2xl">
+              <span className="text-xs font-bold tracking-[0.14em] text-gray-400 sm:text-sm">({principle.number})</span>
+              <h3 className="mt-16 text-2xl font-normal tracking-[-0.035em] text-primary sm:text-3xl lg:text-4xl">
                 {principle.title}
               </h3>
-              <p className="mt-4 text-xs leading-[1.8] text-gray-400 sm:text-sm">{principle.body}</p>
+              <p className="mt-4 text-sm leading-[1.8] text-gray-400 sm:text-base lg:text-lg">{principle.body}</p>
             </li>
           ))}
         </ol>
@@ -600,15 +606,15 @@ function Principles() {
         <div id="contact" className="mt-10 overflow-hidden rounded-[1.5rem] bg-primary p-6 text-black sm:p-10 md:mt-12 md:rounded-[1.75rem] md:p-14">
           <div className="grid items-end gap-10 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-black/70 sm:text-xs">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-black/70 sm:text-sm sm:tracking-[0.16em]">
                 Open work archive
               </p>
-              <h2 className="mt-5 max-w-4xl text-4xl font-normal leading-[0.95] tracking-[-0.055em] sm:text-5xl md:text-6xl lg:text-7xl">
+              <h2 className="mt-5 max-w-4xl text-[clamp(3rem,14vw,3.75rem)] font-normal leading-[1] tracking-[-0.04em] sm:leading-[0.95] md:text-7xl lg:text-8xl">
                 AI를 보여 주는 것에서, 일하게 하는 것까지.
               </h2>
             </div>
             <div className="flex flex-col items-start gap-5 lg:col-span-4">
-              <p className="text-sm leading-[1.7] text-black/65 sm:text-base">
+              <p className="text-base leading-[1.7] text-black/65 sm:text-lg lg:text-xl">
                 공개 가능한 작업과 소스, 라이브 데모는 GitHub에서 계속 업데이트합니다.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -616,7 +622,7 @@ function Principles() {
                   href={GITHUB_PROFILE}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-black py-1 pl-5 pr-1 text-sm font-medium text-primary transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:text-base"
+                  className="group inline-flex items-center gap-2 rounded-full bg-black py-1 pl-5 pr-1 text-base font-medium text-primary transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:text-lg"
                 >
                   <Github size={16} aria-hidden="true" />
                   GitHub 보기
@@ -628,7 +634,7 @@ function Principles() {
                   href="https://www.kookmin.ac.kr/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-black/20 px-5 py-3 text-xs font-bold text-black transition-colors hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:text-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-black/20 px-5 py-3 text-sm font-bold text-black transition-colors hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:text-base"
                 >
                   국민대학교
                   <ArrowUpRight size={14} aria-hidden="true" />
@@ -645,14 +651,14 @@ function Principles() {
 function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black px-4 py-10 text-primary/60 md:px-6">
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm font-bold text-primary">국민대학교 디지털AI혁신센터</p>
-          <p className="mt-2 max-w-lg text-[10px] leading-relaxed text-gray-400 sm:text-xs">
+          <p className="text-base font-bold text-primary sm:text-lg">국민대학교 디지털AI혁신센터</p>
+          <p className="mt-2 max-w-lg text-xs leading-relaxed text-gray-400 sm:text-sm">
             AI 생성·복원 콘텐츠와 프로토타입의 상태는 각 프로젝트에서 별도로 표시합니다.
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-[10px] font-bold tracking-[0.12em] sm:text-xs">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-bold tracking-[0.1em] sm:text-sm">
           <a href="#hero" className="transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
             TOP
           </a>

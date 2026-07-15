@@ -78,7 +78,7 @@ export type WordStyleSegment = {
 type WordsPullUpMultiStyleProps = {
   segments: WordStyleSegment[]
   className?: string
-  as?: 'h2' | 'p' | 'div'
+  as?: 'h1' | 'h2' | 'p' | 'div'
   id?: string
 }
 
@@ -124,7 +124,15 @@ export function WordsPullUpMultiStyle({
       : animatedWords
   })
 
-  const combinedClassName = `flex flex-wrap items-baseline justify-center ${className}`
+  const combinedClassName = `flex flex-wrap items-baseline ${className}`
+
+  if (as === 'h1') {
+    return (
+      <h1 id={id} ref={ref as Ref<HTMLHeadingElement>} className={combinedClassName}>
+        {content}
+      </h1>
+    )
+  }
 
   if (as === 'h2') {
     return (
