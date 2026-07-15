@@ -311,13 +311,16 @@ function SectionShell({ id, labelledBy, tone, children, noise = false }: Section
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className="bg-black px-4 py-8 md:px-6 md:py-10 lg:py-12"
+      className="bg-[#EEEBF7] px-4 py-8 md:px-6 md:py-10 lg:py-12"
     >
       <div
         className={`section-panel section-panel--${tone} relative mx-auto max-w-[1400px] overflow-hidden rounded-2xl md:rounded-[2rem]`}
       >
         {noise ? (
-          <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
+          <div
+            className="bg-noise pointer-events-none absolute inset-0 z-[1] opacity-[0.025] mix-blend-soft-light"
+            aria-hidden="true"
+          />
         ) : null}
         {children}
       </div>
@@ -339,7 +342,7 @@ function About() {
         <WordsPullUpMultiStyle
           as="h2"
           id="about-title"
-          className="mx-auto max-w-5xl justify-center text-center text-[clamp(2.25rem,12vw,3rem)] font-normal leading-[1.02] text-primary sm:leading-[0.98] md:text-6xl lg:text-7xl"
+          className="mx-auto max-w-5xl justify-center text-center text-[clamp(2.25rem,12vw,3rem)] font-normal leading-[1.02] text-[#1B133C] sm:leading-[0.98] md:text-6xl lg:text-7xl"
           segments={[
             { text: 'AI를 보여 주는 것에서,', className: 'font-normal' },
             {
@@ -357,20 +360,20 @@ function About() {
 
         <ScrollOpacityText
           text={bodyCopy}
-          className="mt-10 max-w-4xl text-base leading-[1.85] text-[#DEDBC8] sm:text-lg md:mt-12 md:text-xl lg:text-2xl"
+          className="mt-10 max-w-4xl text-base leading-[1.85] text-[#1B133C] sm:text-lg md:mt-12 md:text-xl lg:text-2xl"
         />
 
         <dl className="about-proof-grid mt-10 grid w-full grid-cols-2 gap-2 text-left md:mt-14 md:grid-cols-4">
           {proofStats.map((stat) => (
             <div
               key={stat.label}
-              className="flex flex-col rounded-xl border border-white/[0.07] bg-black/20 px-3 py-5 sm:px-5 md:py-6"
+              className="section-glass-card flex flex-col rounded-xl px-3 py-5 sm:px-5 md:py-6"
             >
-              <dt className="order-2 mt-3 text-sm font-bold text-primary/85 sm:text-base">{stat.label}</dt>
-              <dd className="order-1 text-[clamp(3rem,13vw,3.75rem)] font-light tracking-[-0.06em] text-primary lg:text-7xl">
+              <dt className="order-2 mt-3 text-sm font-bold text-[#1B133C]/85 sm:text-base">{stat.label}</dt>
+              <dd className="order-1 text-[clamp(3rem,13vw,3.75rem)] font-light tracking-[-0.06em] text-[#1B133C] lg:text-7xl">
                 {stat.value}
               </dd>
-              <dd className="order-3 mt-1 text-xs leading-relaxed text-gray-400 sm:text-sm">{stat.note}</dd>
+              <dd className="order-3 mt-1 text-xs leading-relaxed text-[#4D4666] sm:text-sm">{stat.note}</dd>
             </div>
           ))}
         </dl>
@@ -422,15 +425,15 @@ function Projects() {
             id="projects-title"
             className="max-w-5xl justify-start text-left text-[clamp(2.25rem,12vw,3rem)] font-normal leading-[1.02] sm:leading-[0.98] md:text-6xl lg:text-7xl"
             segments={[
-              { text: '실험을 넘어, 작동하는 결과로.', className: 'text-[#E1E0CC]' },
+              { text: '실험을 넘어, 작동하는 결과로.', className: 'text-[#1B133C]' },
               {
                 text: '공개 가능한 프로젝트부터 투명하게 보여드립니다.',
-                className: 'text-gray-500',
+                className: 'text-[#514A69]',
                 breakBefore: true,
               },
             ]}
           />
-          <p className="max-w-lg text-sm leading-[1.75] text-gray-400 sm:text-base md:text-lg">
+          <p className="max-w-lg text-sm leading-[1.75] text-[#4D4666] sm:text-base md:text-lg">
             상태, 제약, 데이터 범위를 구분해 공개합니다. 수치는 현재 빌드와 작업 기록을 기준으로
             확인했습니다.
           </p>
@@ -442,7 +445,7 @@ function Projects() {
               key={project.number}
               delay={index * 0.1}
               labelledBy={`project-${project.number}-title`}
-              className="group overflow-hidden rounded-[1.5rem] border border-white/[0.08] bg-black/25 md:grid md:grid-cols-12 md:rounded-[1.75rem]"
+              className="section-glass-card group overflow-hidden rounded-[1.5rem] md:grid md:grid-cols-12 md:rounded-[1.75rem]"
             >
               <div className="project-media relative aspect-[16/10] overflow-hidden bg-[#212121] md:col-span-5 md:aspect-auto md:min-h-[400px] lg:min-h-[440px]">
                 <img
@@ -454,38 +457,38 @@ function Projects() {
                   style={{ objectPosition: project.imagePosition }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/45" aria-hidden="true" />
-                <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/70 px-3 py-1.5 text-[10px] font-bold tracking-[0.12em] text-primary backdrop-blur sm:left-5 sm:top-5 sm:text-xs">
+                <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#1B133C]/80 px-3 py-1.5 text-[10px] font-bold tracking-[0.12em] text-white backdrop-blur sm:left-5 sm:top-5 sm:text-xs">
                   {project.status}
                 </div>
-                <span className="absolute right-4 top-4 text-xs font-bold tracking-[0.14em] text-primary/65 sm:right-5 sm:top-5 sm:text-sm">
+                <span className="absolute right-4 top-4 text-xs font-bold tracking-[0.14em] text-white/90 drop-shadow sm:right-5 sm:top-5 sm:text-sm">
                   ({project.number})
                 </span>
               </div>
 
               <div className="min-w-0 p-6 sm:p-7 md:col-span-7 md:flex md:flex-col md:justify-center md:p-8 lg:p-10">
-                <p className="text-[10px] font-bold tracking-[0.1em] text-gray-400 sm:text-xs sm:tracking-[0.14em] md:text-sm">
+                <p className="text-[10px] font-bold tracking-[0.1em] text-[#4D4666] sm:text-xs sm:tracking-[0.14em] md:text-sm">
                   {project.category}
                 </p>
                 <h3
                   id={`project-${project.number}-title`}
-                  className="mt-3 text-[clamp(1.875rem,8vw,2.25rem)] font-normal tracking-[-0.045em] text-primary md:text-5xl"
+                  className="mt-3 text-[clamp(1.875rem,8vw,2.25rem)] font-normal tracking-[-0.045em] text-[#1B133C] md:text-5xl"
                 >
                   {project.title}
                 </h3>
-                <p className="mt-4 max-w-2xl text-base leading-[1.75] text-gray-400 sm:text-lg md:text-xl">
+                <p className="mt-4 max-w-2xl text-base leading-[1.75] text-[#4D4666] sm:text-lg md:text-xl">
                   {project.summary}
                 </p>
 
-                <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
+                <ul className="mt-6 space-y-3 border-t border-[#1B133C]/10 pt-6">
                   {project.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-gray-400 sm:text-base">
-                      <Check size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[#4D4666] sm:text-base">
+                      <Check size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-[#1D6C59]" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <p className="mt-6 border-l border-primary/40 pl-3 text-xs leading-relaxed text-gray-400 sm:text-sm">
+                <p className="mt-6 border-l border-[#1D6C59]/40 pl-3 text-xs leading-relaxed text-[#4D4666] sm:text-sm">
                   {project.note}
                 </p>
 
@@ -493,7 +496,7 @@ function Projects() {
                   href={project.href}
                   target={project.external ? '_blank' : undefined}
                   rel={project.external ? 'noreferrer' : undefined}
-                  className="mt-7 inline-flex items-center gap-2 rounded-sm text-sm font-bold text-primary/85 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-base"
+                  className="mt-7 inline-flex items-center gap-2 rounded-sm text-sm font-bold text-[#1D6C59] transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:text-base"
                   aria-label={`${project.title} — ${project.linkLabel}${project.external ? ' (새 창)' : ''}`}
                 >
                   {project.linkLabel}
@@ -527,18 +530,18 @@ function Process() {
                 { text: 'Scale.', className: 'section-accent-text font-serif italic' },
                 {
                   text: '실험을 기록하고, 실제 흐름에 적용하고, 다시 쓸 수 있게 확장합니다.',
-                  className: 'text-gray-500',
+                  className: 'text-[#4D4666]',
                   breakBefore: true,
                 },
               ]}
             />
-            <p className="mt-8 max-w-2xl text-base leading-[1.8] text-gray-400 sm:text-lg lg:text-xl">
+            <p className="mt-8 max-w-2xl text-base leading-[1.8] text-[#4D4666] sm:text-lg lg:text-xl">
               도구 목록보다 문제 해결의 흐름을 남깁니다. 채택안과 탈락안, 검증 과정과 다음
               단계까지 기록해야 한 번의 실험이 조직의 자산이 됩니다.
             </p>
           </div>
 
-          <figure className="relative min-h-[420px] overflow-hidden lg:min-h-[600px]">
+          <figure className="relative mx-3 mb-3 min-h-[420px] overflow-hidden rounded-[1.25rem] border border-white/70 shadow-[0_18px_50px_rgba(27,19,60,0.16)] sm:mx-5 sm:mb-5 lg:m-6 lg:ml-0 lg:min-h-[600px] lg:rounded-[1.5rem]">
             <img
               src="/media/lab-gyro.jpg"
               alt="빛나는 자이로 구조의 AI 생성 로보틱스 추상 키프레임"
@@ -547,25 +550,25 @@ function Process() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10" aria-hidden="true" />
-            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-xs leading-relaxed text-primary/70 sm:p-8 sm:text-sm">
+            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-xs leading-relaxed text-white/90 sm:p-8 sm:text-sm">
               AI 생성 콘셉트 키프레임 · Higgsfield R&D v5 · 진행 중 · 최종 영상 없음
             </figcaption>
           </figure>
         </div>
 
-        <ol className="grid border-t border-white/10 md:grid-cols-3">
-          {stages.map((stage, index) => (
+        <ol className="grid gap-2 border-t border-[#1B133C]/10 p-3 sm:p-5 md:grid-cols-3">
+          {stages.map((stage) => (
             <li
               key={stage.number}
-              className={`process-stage bg-black/10 p-6 sm:p-8 md:p-10 ${index < stages.length - 1 ? 'border-b border-white/10 md:border-b-0 md:border-r' : ''}`}
+              className="section-glass-card process-stage rounded-xl p-6 sm:p-8 md:p-10"
             >
-              <div className="flex items-center justify-between gap-4 text-xs font-bold tracking-[0.1em] text-gray-400 lg:text-sm">
+              <div className="flex items-center justify-between gap-4 text-xs font-bold tracking-[0.1em] text-[#4D4666] lg:text-sm">
                 <span>({stage.number})</span>
                 <span>{stage.period}</span>
               </div>
-              <p className="mt-10 font-serif text-3xl italic text-primary/60 md:text-[2rem] lg:text-4xl xl:text-5xl">{stage.english}</p>
-              <h3 className="mt-1 text-4xl font-normal tracking-[-0.04em] text-primary md:text-5xl lg:text-6xl">{stage.title}</h3>
-              <p className="mt-5 text-base leading-[1.8] text-gray-400 lg:text-lg">{stage.body}</p>
+              <p className="section-accent-text mt-10 font-serif text-3xl italic md:text-[2rem] lg:text-4xl xl:text-5xl">{stage.english}</p>
+              <h3 className="mt-1 text-4xl font-normal tracking-[-0.04em] text-[#1B133C] md:text-5xl lg:text-6xl">{stage.title}</h3>
+              <p className="mt-5 text-base leading-[1.8] text-[#4D4666] lg:text-lg">{stage.body}</p>
             </li>
           ))}
         </ol>
@@ -586,8 +589,8 @@ function Principles() {
           id="principles-title"
           className="mt-8 max-w-5xl justify-start text-left text-[clamp(2.75rem,12.5vw,3.75rem)] font-normal leading-[1] sm:leading-[0.95] md:text-7xl xl:text-8xl"
           segments={[
-            { text: '빠르게 만들되,', className: 'text-primary' },
-            { text: '책임을 생략하지 않습니다.', className: 'text-gray-500', breakBefore: true },
+            { text: '빠르게 만들되,', className: 'text-[#1B133C]' },
+            { text: '책임을 생략하지 않습니다.', className: 'text-[#514A69]', breakBefore: true },
           ]}
         />
 
@@ -595,21 +598,25 @@ function Principles() {
           {principles.map((principle) => (
             <li
               key={principle.number}
-              className="principle-card min-h-[280px] rounded-xl border border-white/[0.07] bg-black/20 p-6 sm:min-h-[300px] sm:p-8 lg:min-h-[340px]"
+              className="section-glass-card principle-card min-h-[280px] rounded-xl p-6 sm:min-h-[300px] sm:p-8 lg:min-h-[340px]"
             >
-              <span className="text-xs font-bold tracking-[0.14em] text-gray-400 sm:text-sm">({principle.number})</span>
-              <h3 className="mt-16 text-2xl font-normal tracking-[-0.035em] text-primary sm:text-3xl lg:text-4xl">
+              <span className="text-xs font-bold tracking-[0.14em] text-[#4D4666] sm:text-sm">({principle.number})</span>
+              <h3 className="mt-16 text-2xl font-normal tracking-[-0.035em] text-[#1B133C] sm:text-3xl lg:text-4xl">
                 {principle.title}
               </h3>
-              <p className="mt-4 text-sm leading-[1.8] text-gray-400 sm:text-base lg:text-lg">{principle.body}</p>
+              <p className="mt-4 text-sm leading-[1.8] text-[#4D4666] sm:text-base lg:text-lg">{principle.body}</p>
             </li>
           ))}
         </ol>
 
-        <div id="contact" className="mt-10 overflow-hidden rounded-[1.5rem] bg-primary p-6 text-black sm:p-10 md:mt-12 md:rounded-[1.75rem] md:p-14">
+        <div
+          id="contact"
+          className="mt-10 overflow-hidden rounded-[1.5rem] border border-white/20 bg-[#1B133C] p-6 text-white shadow-[0_24px_60px_rgba(27,19,60,0.22)] sm:p-10 md:mt-12 md:rounded-[1.75rem] md:p-14"
+          style={{ backgroundImage: 'linear-gradient(135deg, #1B133C 0%, #302458 68%, #46376A 100%)' }}
+        >
           <div className="grid items-end gap-10 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-black/70 sm:text-sm sm:tracking-[0.16em]">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-white/65 sm:text-sm sm:tracking-[0.16em]">
                 Open work archive
               </p>
               <h2 className="mt-5 max-w-4xl text-[clamp(3rem,14vw,3.75rem)] font-normal leading-[1] tracking-[-0.04em] sm:leading-[0.95] md:text-7xl lg:text-8xl">
@@ -617,7 +624,7 @@ function Principles() {
               </h2>
             </div>
             <div className="flex flex-col items-start gap-5 lg:col-span-4">
-              <p className="text-base leading-[1.7] text-black/65 sm:text-lg lg:text-xl">
+              <p className="text-base leading-[1.7] text-white/75 sm:text-lg lg:text-xl">
                 공개 가능한 작업과 소스, 라이브 데모는 GitHub에서 계속 업데이트합니다.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -625,11 +632,11 @@ function Principles() {
                   href={GITHUB_PROFILE}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-black py-1 pl-5 pr-1 text-base font-medium text-primary transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:text-lg"
+                  className="group inline-flex items-center gap-2 rounded-full bg-white py-1 pl-5 pr-1 text-base font-medium text-[#1B133C] transition-[gap] duration-300 motion-safe:hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-lg"
                 >
                   <Github size={16} aria-hidden="true" />
                   GitHub 보기
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-black transition-transform duration-300 motion-safe:group-hover:scale-110 sm:h-10 sm:w-10">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1B133C] text-white transition-transform duration-300 motion-safe:group-hover:scale-110 sm:h-10 sm:w-10">
                     <ArrowUpRight size={16} aria-hidden="true" />
                   </span>
                 </a>
@@ -637,7 +644,7 @@ function Principles() {
                   href="https://www.kookmin.ac.kr/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-black/20 px-5 py-3 text-sm font-bold text-black transition-colors hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:text-base"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/30 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
                 >
                   국민대학교
                   <ArrowUpRight size={14} aria-hidden="true" />
@@ -653,22 +660,22 @@ function Principles() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black px-4 py-10 text-primary/60 md:px-6">
+    <footer className="border-t border-[#1B133C]/10 bg-[#E8E4F4] px-4 py-10 text-[#1B133C]/75 md:px-6">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-base font-bold text-primary sm:text-lg">국민대학교 디지털AI혁신센터</p>
-          <p className="mt-2 max-w-lg text-xs leading-relaxed text-gray-400 sm:text-sm">
+          <p className="text-base font-bold text-[#1B133C] sm:text-lg">국민대학교 디지털AI혁신센터</p>
+          <p className="mt-2 max-w-lg text-xs leading-relaxed text-[#4D4666] sm:text-sm">
             AI 생성·복원 콘텐츠와 프로토타입의 상태는 각 프로젝트에서 별도로 표시합니다.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-bold tracking-[0.1em] sm:text-sm">
-          <a href="#hero" className="transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+          <a href="#hero" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             TOP
           </a>
-          <a href="#principles" className="transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+          <a href="#principles" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             AI 원칙
           </a>
-          <a href={GITHUB_PROFILE} target="_blank" rel="noreferrer" className="transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+          <a href={GITHUB_PROFILE} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             GITHUB ↗
           </a>
         </div>
@@ -680,7 +687,7 @@ function Footer() {
 export default function App() {
   return (
     <>
-      <main id="main-content" className="overflow-x-hidden bg-black">
+      <main id="main-content" className="overflow-x-hidden bg-[#EEEBF7]">
         <Hero />
         <About />
         <Projects />
