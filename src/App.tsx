@@ -200,23 +200,23 @@ function Hero() {
       <div className="relative z-20 flex justify-center px-4 pt-4 md:pt-6">
         <nav
           aria-label="주요 메뉴"
-          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:w-[min(92vw,580px)] sm:px-6 md:px-8 md:py-4"
+          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:grid sm:w-[min(92vw,580px)] sm:grid-cols-6 sm:px-6 md:px-8 md:py-4"
         >
           <a
             href="#hero"
             aria-label="국민대학교 디지털AI혁신센터 홈"
-            className="rounded-sm text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]"
+            className="rounded-sm text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:justify-self-center"
           >
             <CenterMark />
           </a>
-          <div className="ml-8 hidden flex-1 items-center justify-between whitespace-nowrap sm:flex md:ml-12">
+          <div className="hidden whitespace-nowrap sm:contents">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
-                className="rounded-sm text-sm font-medium text-[#1B133C]/80 transition-colors duration-300 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] md:text-[15px]"
+                className="rounded-sm text-sm font-medium text-[#1B133C]/80 transition-colors duration-300 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:justify-self-center md:text-[15px]"
               >
                 {item.label}
               </a>
