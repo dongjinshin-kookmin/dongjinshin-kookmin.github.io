@@ -58,6 +58,35 @@ a {
   font-family: 'Noto Sans KR', 'Inter', 'Apple SD Gothic Neo', sans-serif;
 }
 
+.hero-title-line {
+  display: grid;
+  width: 100%;
+  align-items: center;
+}
+
+.hero-title-line--primary {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  line-height: 0.86;
+}
+
+.hero-title-line--secondary {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  line-height: 0.94;
+}
+
+.hero-title-line > span {
+  min-width: 0;
+  text-align: center;
+}
+
+.hero-title-line > span:first-child {
+  text-align: left;
+}
+
+.hero-title-line > span:last-child {
+  text-align: right;
+}
+
 .section-panel {
   --section-accent: var(--ink);
   --section-surface: #eeebf7;

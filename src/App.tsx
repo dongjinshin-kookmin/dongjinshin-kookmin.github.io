@@ -155,7 +155,7 @@ const principles = [
 
 function CenterMark() {
   return (
-    <svg viewBox="0 0 256 256" className="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 256 256" className="h-7 w-7" aria-hidden="true">
       <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z" fill="currentColor" />
       <path d="M 256 128 L 128 128 L 0 0 L 128 0 Z" fill="currentColor" />
     </svg>
@@ -200,7 +200,7 @@ function Hero() {
       <div className="relative z-20 flex justify-center px-4 pt-4 md:pt-6">
         <nav
           aria-label="주요 메뉴"
-          className="inline-flex items-center rounded-xl border border-white/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-md md:px-6"
+          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:w-[min(92vw,580px)] sm:px-6 md:px-8 md:py-4"
         >
           <a
             href="#hero"
@@ -209,14 +209,14 @@ function Hero() {
           >
             <CenterMark />
           </a>
-          <div className="ml-7 hidden items-center gap-6 whitespace-nowrap sm:flex md:ml-10 md:gap-9">
+          <div className="ml-8 hidden flex-1 items-center justify-between whitespace-nowrap sm:flex md:ml-12">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
-                className="rounded-sm text-sm font-medium text-[#1B133C]/80 transition-colors duration-300 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]"
+                className="rounded-sm text-sm font-medium text-[#1B133C]/80 transition-colors duration-300 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] md:text-[15px]"
               >
                 {item.label}
               </a>
@@ -225,7 +225,7 @@ function Hero() {
         </nav>
       </div>
 
-      <div className="relative z-10 mx-auto mt-8 flex w-full flex-1 flex-col items-center px-5 text-center md:mt-14 md:px-8">
+      <div className="relative z-10 mx-auto mt-8 flex w-full flex-1 flex-col items-center px-4 text-center sm:mt-9 sm:px-6 md:mt-10 md:px-8">
         <motion.div
           className="mb-6 inline-flex max-w-full items-center gap-2.5 rounded-xl border border-[#1B133C]/10 bg-white/70 px-4 py-2 text-xs font-medium text-[#1B133C] shadow-sm backdrop-blur-sm sm:text-sm"
           initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 16 }}
@@ -245,7 +245,7 @@ function Hero() {
         >
           <motion.span
             aria-hidden="true"
-            className="flex w-full items-center justify-between whitespace-nowrap text-[16vw] font-extrabold leading-[0.9] sm:text-[14vw] lg:text-[clamp(7.25rem,8.5vw,8rem)]"
+            className="hero-title-line hero-title-line--primary whitespace-nowrap text-[16vw] font-extrabold sm:text-[14vw] lg:text-[clamp(7.25rem,8.5vw,8rem)]"
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={titleTransition(0.2)}
@@ -256,9 +256,14 @@ function Hero() {
           </motion.span>
           <motion.span
             aria-hidden="true"
-            className="mt-1 flex w-full items-center justify-between whitespace-nowrap text-[10.3vw] font-light leading-[0.95] sm:text-[9vw] lg:text-[clamp(4.7rem,5.5vw,5.2rem)]"
-            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="hero-title-line hero-title-line--secondary mt-1 whitespace-nowrap text-[10.3vw] font-light sm:text-[9vw] lg:text-[clamp(4.7rem,5.5vw,5.2rem)]"
+            initial={{
+              opacity: shouldReduceMotion ? 1 : 0,
+              x: 0.95,
+              y: shouldReduceMotion ? 0 : 20,
+              scaleX: 1.013,
+            }}
+            animate={{ opacity: 1, x: 0.95, y: 0, scaleX: 1.013 }}
             transition={titleTransition(0.3)}
           >
             {secondaryTitle.map((character, index) => (
@@ -268,7 +273,7 @@ function Hero() {
         </h1>
 
         <motion.p
-          className="mt-5 max-w-3xl text-sm leading-relaxed text-[#1B133C]/70 sm:mt-6 sm:text-base md:text-lg"
+          className="mt-6 max-w-[860px] text-base leading-[1.65] text-[#1B133C]/70 sm:mt-7 sm:text-lg md:text-xl"
           initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={titleTransition(0.45)}
@@ -279,7 +284,7 @@ function Hero() {
 
         <motion.a
           href="#projects"
-          className="group mt-7 inline-flex items-center gap-2 rounded-xl bg-[#FEFEFE] px-6 py-3 text-sm font-semibold text-[#1B133C] shadow-[0px_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0px_6px_16px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:mt-8 sm:px-8 sm:py-3.5 sm:text-base"
+          className="group mt-8 inline-flex items-center gap-2.5 rounded-xl bg-[#FEFEFE] px-8 py-3.5 text-base font-semibold text-[#1B133C] shadow-[0px_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0px_6px_16px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:px-9 sm:py-4"
           initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={titleTransition(0.6)}
