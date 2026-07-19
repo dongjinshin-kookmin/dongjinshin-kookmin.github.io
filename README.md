@@ -1,11 +1,16 @@
 # 국민대학교 디지털AI혁신센터 홈페이지
 
-국민대학교 디지털AI혁신센터의 공개 프로젝트와 AI 활용 작업 이력을 소개하는 GitHub Pages 홈페이지입니다.
+국민대학교 디지털AI혁신센터의 공개 프로젝트와 GitHub 작업 이력을 소개하는 GitHub Pages 홈페이지입니다.
+
+2026-07-19 스냅샷에서는 공개 저장소 9개를 4개 작업 분야로 묶고, 기본 브랜치 작업 커밋 48건과 `gh-pages` 배포 커밋 12건을 분리해 보여줍니다.
 
 - 공개 사이트: <https://dongjinshin-kookmin.github.io/>
 - 성과관리 통합시스템: <https://dongjinshin-kookmin.github.io/kmu-performance-system/>
+- 교비회계 수지분석: <https://dongjinshin-kookmin.github.io/univ-finance-dashboard/>
 - AI 기술과 활용 직원교육: <https://dongjinshin-kookmin.github.io/kmu-ai-staff-training/>
+- 범용 디지털 백드롭: <https://dongjinshin-kookmin.github.io/digital-backdrop/>
 - KMU–NKUST 행사 화면: <https://dongjinshin-kookmin.github.io/nkust-mou-backdrop/>
+- 시간표 편성 시스템 소스: <https://github.com/dongjinshin-kookmin/timetable-app>
 
 ## 실행
 
@@ -28,3 +33,9 @@ npm run preview
 - AI 생성 콘셉트 이미지와 진행 중인 R&D는 화면에 상태를 표시합니다.
 - 실명·사번·성적·결재정보, 클라이언트 API 키 입력 기능이 있는 자료는 홈페이지에서 제외합니다.
 - `public/media`에는 공개용으로 선별·최적화한 파생 이미지 파일만 저장합니다.
+- 데모 데이터나 공개 소스의 재검토가 필요한 저장소는 이력만 표시하고 외부 링크를 비활성합니다.
+- 라이선스가 명시되지 않은 저장소는 ‘오픈 소스’가 아닌 ‘공개 저장소’로 표기합니다.
+
+## GitHub 아카이브 갱신
+
+홈페이지의 저장소·커밋 스냅샷은 `src/data/githubPortfolio.ts`에서 관리합니다. 기본 브랜치와 배포 브랜치를 분리하고, 갱신 시점과 접속 검증 상태를 함께 수정합니다.
