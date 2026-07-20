@@ -274,7 +274,7 @@ function About() {
     <SectionShell id="about" labelledBy="about-title" tone="coral">
       <div className="relative z-10 flex flex-col items-center px-5 py-14 text-center sm:px-7 md:px-10 md:py-16 lg:px-14 lg:py-20">
         <p className="section-kicker mb-7 text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em] md:mb-9">
-          Public work index · 2026.07.19 snapshot
+          Public work index · {archiveSnapshot.capturedAt.split(' ')[0]} snapshot
         </p>
 
         <WordsPullUpMultiStyle
@@ -487,7 +487,7 @@ function Projects() {
     <SectionShell id="projects" labelledBy="projects-title" tone="mint" noise>
       <div className="relative z-10 px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
         <p className="section-kicker mb-6 text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em]">
-          Work index · 4 areas, 7 records
+          Work index · {workAreas.length} areas, {workRecords.length} records
         </p>
         <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <WordsPullUpMultiStyle
@@ -728,7 +728,7 @@ function Archive() {
     {
       number: '02',
       title: '소스와 배포 분리',
-      body: '기본 브랜치의 48건은 작업 이력으로, gh-pages 12건은 배포 이력으로 따로 집계합니다.',
+      body: `기본 브랜치의 ${archiveSnapshot.sourceCommits}건은 작업 이력으로, gh-pages ${archiveSnapshot.deployCommits}건은 배포 이력으로 따로 집계합니다.`,
     },
     {
       number: '03',
@@ -755,7 +755,8 @@ function Archive() {
           />
           <div className="lg:col-span-4">
             <p className="text-base leading-[1.8] text-[#4D4666] sm:text-lg lg:text-xl">
-              공개 저장소 9개의 현재 브랜치에서 확인되는 커밋 60건을 저장소별로 정리했습니다.
+              공개 저장소 {archiveSnapshot.publicRepositories}개의 현재 브랜치에서 확인되는 커밋{' '}
+              {archiveSnapshot.sourceCommits + archiveSnapshot.deployCommits}건을 저장소별로 정리했습니다.
               과거의 실제 push 이벤트 횟수가 아닌, 현재 복원 가능한 공개 커밋 기록입니다.
             </p>
           </div>

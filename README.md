@@ -2,7 +2,7 @@
 
 국민대학교 디지털AI혁신센터의 공개 프로젝트와 GitHub 작업 이력을 소개하는 GitHub Pages 홈페이지입니다.
 
-2026-07-19 스냅샷에서는 공개 저장소 9개를 4개 작업 분야로 묶고, 기본 브랜치 작업 커밋 48건과 `gh-pages` 배포 커밋 12건을 분리해 보여줍니다.
+2026-07-20 스냅샷에서는 공개 저장소 10개를 4개 작업 분야로 묶고, 기본 브랜치 작업 커밋 56건과 `gh-pages` 배포 커밋 13건을 분리해 보여줍니다.
 
 - 공개 사이트: <https://dongjinshin-kookmin.github.io/>
 - 성과관리 통합시스템: <https://dongjinshin-kookmin.github.io/kmu-performance-system/>
@@ -10,7 +10,8 @@
 - AI 기술과 활용 직원교육: <https://dongjinshin-kookmin.github.io/kmu-ai-staff-training/>
 - 범용 디지털 백드롭: <https://dongjinshin-kookmin.github.io/digital-backdrop/>
 - KMU–NKUST 행사 화면: <https://dongjinshin-kookmin.github.io/nkust-mou-backdrop/>
-- 시간표 편성 시스템 소스: <https://github.com/dongjinshin-kookmin/timetable-app>
+- 시간표 편성 시스템: <https://dongjinshin-kookmin.github.io/timetable-app/>
+- 마크다운 에디터 소스: <https://github.com/dongjinshin-kookmin/markdown-editor>
 
 ## 실행
 
