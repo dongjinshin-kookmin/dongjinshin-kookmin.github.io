@@ -7,9 +7,9 @@
 - 공개 사이트: <https://dongjinshin-kookmin.github.io/>
 - 성과관리 통합시스템: <https://dongjinshin-kookmin.github.io/kmu-performance-system/>
 - 교비회계 수지분석: <https://dongjinshin-kookmin.github.io/univ-finance-dashboard/>
-- AI 기술과 활용 직원교육: <https://dongjinshin-kookmin.github.io/kmu-ai-staff-training/>
+- AI 기술과 활용 직원교육: 공개자료 재점검 중(홈페이지 링크 비활성)
 - 범용 디지털 백드롭: <https://dongjinshin-kookmin.github.io/digital-backdrop/>
-- KMU–NKUST 행사 화면: <https://dongjinshin-kookmin.github.io/nkust-mou-backdrop/>
+- 디지털 백드롭 행사 화면: <https://dongjinshin-kookmin.github.io/nkust-mou-backdrop/>
 - 시간표 편성 시스템: <https://dongjinshin-kookmin.github.io/timetable-app/>
 - 마크다운 에디터 소스: <https://github.com/dongjinshin-kookmin/markdown-editor>
 
@@ -31,7 +31,7 @@ npm run preview
 ## 공개 기준
 
 - 공개 데모에는 합성 데이터와 예시 자료를 사용합니다.
-- AI 생성 콘셉트 이미지와 진행 중인 R&D는 화면에 상태를 표시합니다.
+- 가상·합성 데이터를 사용하는 공개 데모는 카드에 안전 안내를 강조 표시합니다.
 - 실명·사번·성적·결재정보, 클라이언트 API 키 입력 기능이 있는 자료는 홈페이지에서 제외합니다.
 - `public/media`에는 공개용으로 선별·최적화한 파생 이미지 파일만 저장합니다.
 - 데모 데이터나 공개 소스의 재검토가 필요한 저장소는 이력만 표시하고 외부 링크를 비활성합니다.

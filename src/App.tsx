@@ -8,6 +8,7 @@ import {
   Github,
   Globe2,
   ShieldAlert,
+  ShieldCheck,
 } from 'lucide-react'
 import { useRef, type ReactNode } from 'react'
 import { ScrollOpacityText } from './components/ScrollOpacityText'
@@ -31,7 +32,7 @@ const HERO_VIDEO =
 const navItems = [
   { label: '소개', href: '#about' },
   { label: '작업 분야', href: '#projects' },
-  { label: 'GitHub 기록', href: '#archive' },
+  { label: '작업 이력', href: '#archive', expandsArchive: true },
   { label: '원칙', href: '#principles' },
   { label: 'GitHub ↗', href: GITHUB_PROFILE, external: true },
 ]
@@ -58,6 +59,11 @@ const proofStats = [
     note: 'HTTP 200 확인 · 정리 검토 1개 포함',
   },
 ]
+
+function openWorkHistory() {
+  const archive = document.querySelector<HTMLDetailsElement>('#archive')
+  if (archive) archive.open = true
+}
 
 const principles = [
   {
@@ -140,13 +146,14 @@ function Hero() {
           </a>
           <div className="ml-5 flex items-center gap-4 text-sm font-semibold sm:hidden">
             <a href="#projects" className="text-[#1B133C]/80">작업</a>
-            <a href="#archive" className="text-[#1B133C]/80">기록</a>
+            <a href="#archive" onClick={openWorkHistory} className="text-[#1B133C]/80">이력</a>
           </div>
           <div className="hidden whitespace-nowrap sm:contents">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
+                onClick={item.expandsArchive ? openWorkHistory : undefined}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noreferrer' : undefined}
                 className="rounded-sm text-xs font-medium text-[#1B133C]/80 transition-colors duration-300 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:justify-self-center md:text-sm"
@@ -424,6 +431,13 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
           {work.summary}
         </p>
 
+        {work.publicDataNotice ? (
+          <div className="mt-5 flex items-start gap-3 rounded-xl border border-[#1D6C59]/25 bg-[#E5F4ED]/90 p-4 text-sm font-semibold leading-relaxed text-[#155944] sm:text-base">
+            <ShieldCheck size={21} className="mt-0.5 shrink-0" aria-hidden="true" />
+            <p>{work.publicDataNotice}</p>
+          </div>
+        ) : null}
+
         {linkedRepositories.length > 0 ? (
           <dl className="mt-6 grid grid-cols-3 gap-2 border-y border-[#1B133C]/10 py-4 text-left">
             <div>
@@ -469,10 +483,11 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
           {linkedRepositories.map((repository) => (
             <a
               key={repository.id}
-              href={`#repository-${repository.id}`}
+              href="#archive"
+              onClick={openWorkHistory}
               className="inline-flex items-center gap-1.5 rounded-full border border-[#1B133C]/15 bg-white/60 px-4 py-2.5 text-xs font-bold text-[#4D4666] transition-colors hover:border-[#1B133C]/30 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:text-sm"
             >
-              {repository.name}
+              {repository.displayName} 이력
               <ArrowRight size={14} aria-hidden="true" />
             </a>
           ))}
@@ -533,12 +548,14 @@ function Projects() {
             )
           })}
         </div>
+
+        <WorkHistory />
       </div>
     </SectionShell>
   )
 }
 
-function RepositoryDetails({ repository }: { repository: RepositoryRecord }) {
+function RepositoryDetails({ repository, expanded = false }: { repository: RepositoryRecord; expanded?: boolean }) {
   const sourceCommits = repository.commits.filter((commit) => commit.branch === 'main')
   const deployCommits = repository.commits.filter((commit) => commit.branch === 'gh-pages')
   const latestSource = sourceCommits[0]
@@ -553,6 +570,7 @@ function RepositoryDetails({ repository }: { repository: RepositoryRecord }) {
   return (
     <details
       id={`repository-${repository.id}`}
+      open={expanded}
       className="repository-details section-glass-card overflow-hidden rounded-2xl scroll-mt-6"
     >
       <summary className="grid cursor-pointer list-none items-center gap-4 px-5 py-5 marker:hidden sm:px-6 md:grid-cols-12 md:gap-5 md:py-6 [&::-webkit-details-marker]:hidden">
@@ -564,9 +582,8 @@ function RepositoryDetails({ repository }: { repository: RepositoryRecord }) {
             <span className="text-xs font-bold text-[#4D4666]">{repository.language}</span>
           </div>
           <h4 className="mt-3 break-words text-2xl font-normal tracking-[-0.035em] text-[#1B133C] sm:text-3xl">
-            {repository.name}
+            {repository.displayName}
           </h4>
-          <p className="mt-1 text-sm font-bold text-[#4D4666] sm:text-base">{repository.displayName}</p>
         </div>
         <div className="grid grid-cols-3 gap-3 md:col-span-5">
           <div>
@@ -718,12 +735,12 @@ function CommitList({
   )
 }
 
-function Archive() {
+function WorkHistory() {
   const archiveMethod = [
     {
       number: '01',
       title: '작업으로 읽기',
-      body: '저장소를 업무·교육·미디어·플랫폼 네 분야로 묶어 먼저 결과를 이해합니다.',
+      body: '저장소를 교육·업무·미디어·플랫폼 네 분야로 묶어 먼저 결과를 이해합니다.',
     },
     {
       number: '02',
@@ -738,29 +755,36 @@ function Archive() {
   ]
 
   return (
-    <SectionShell id="archive" labelledBy="archive-title" tone="sky" noise>
-      <div className="relative z-10 px-5 py-14 sm:px-7 md:px-8 md:py-16 lg:px-10 lg:py-20">
-        <p className="section-kicker text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em]">
-          GitHub archive · {archiveSnapshot.capturedAt}
-        </p>
-        <div className="mt-7 grid gap-8 lg:grid-cols-12 lg:items-end">
-          <WordsPullUpMultiStyle
-            as="h2"
-            id="archive-title"
-            className="justify-start text-left text-[clamp(2.75rem,12.5vw,3.75rem)] font-normal leading-[1] sm:leading-[0.95] md:text-7xl xl:text-8xl lg:col-span-8"
-            segments={[
-              { text: '모든 작업을,', className: 'text-[#1B133C]' },
-              { text: '한 줄의 기록부터.', className: 'text-[#514A69]', breakBefore: true },
-            ]}
-          />
-          <div className="lg:col-span-4">
-            <p className="text-base leading-[1.8] text-[#4D4666] sm:text-lg lg:text-xl">
-              공개 저장소 {archiveSnapshot.publicRepositories}개의 현재 브랜치에서 확인되는 커밋{' '}
-              {archiveSnapshot.sourceCommits + archiveSnapshot.deployCommits}건을 저장소별로 정리했습니다.
-              과거의 실제 push 이벤트 횟수가 아닌, 현재 복원 가능한 공개 커밋 기록입니다.
-            </p>
-          </div>
+    <details
+      id="archive"
+      className="repository-details mt-16 scroll-mt-6 overflow-hidden rounded-[1.5rem] border border-[#1B133C]/15 bg-[#DCECF3]/80 shadow-[0_18px_45px_rgba(27,19,60,0.08)] md:mt-20 md:rounded-[1.75rem]"
+    >
+      <summary className="grid cursor-pointer list-none items-center gap-5 px-5 py-7 marker:hidden sm:px-7 md:grid-cols-12 md:px-9 md:py-9 [&::-webkit-details-marker]:hidden">
+        <div className="md:col-span-8">
+          <p className="section-kicker text-xs font-bold uppercase tracking-[0.12em] sm:text-sm sm:tracking-[0.16em]">
+            Work history · {archiveSnapshot.capturedAt}
+          </p>
+          <h2 id="archive-title" className="mt-3 text-[clamp(2.25rem,9vw,3.5rem)] font-normal leading-[1.02] tracking-[-0.045em] text-[#1B133C] md:text-6xl">
+            작업 이력 전체 보기
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-[1.75] text-[#4D4666] sm:text-base md:text-lg">
+            인덱스에 소개한 결과물과 공개 저장소 {archiveSnapshot.publicRepositories}개의 작업·배포 이력을 한 번에 펼쳐 확인합니다.
+          </p>
         </div>
+        <div className="flex items-center justify-between gap-5 md:col-span-4 md:justify-end">
+          <div className="text-left md:text-right">
+            <strong className="block text-4xl font-light tracking-[-0.05em] text-[#1B133C] sm:text-5xl">
+              {archiveSnapshot.sourceCommits + archiveSnapshot.deployCommits}
+            </strong>
+            <span className="text-xs font-bold text-[#4D4666] sm:text-sm">전체 공개 커밋</span>
+          </div>
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1B133C] text-white sm:h-14 sm:w-14">
+            <ChevronDown className="archive-chevron" size={24} aria-hidden="true" />
+          </span>
+        </div>
+      </summary>
+
+      <div className="border-t border-[#1B133C]/10 px-5 pb-8 pt-8 sm:px-7 md:px-9 md:pb-10 md:pt-10">
 
         <ol className="mt-10 grid gap-2 md:grid-cols-3">
           {archiveMethod.map((item) => (
@@ -772,7 +796,7 @@ function Archive() {
           ))}
         </ol>
 
-        <div className="mt-12 space-y-12">
+        <div className="mt-10 space-y-12">
           {workAreas.map((area) => {
             const areaRepositories = repositories.filter((repository) => repository.area === area.id)
             return (
@@ -790,7 +814,7 @@ function Archive() {
                 </header>
                 <div className="space-y-3">
                   {areaRepositories.map((repository) => (
-                    <RepositoryDetails key={repository.id} repository={repository} />
+                    <RepositoryDetails key={repository.id} repository={repository} expanded />
                   ))}
                 </div>
               </section>
@@ -802,7 +826,7 @@ function Archive() {
           공개 저장소만 집계했으며, 비공개 작업과 개인 정보가 포함될 수 있는 자료는 화면과 통계에서 제외합니다. 라이선스가 명시되지 않은 저장소는 ‘오픈 소스’가 아닌 ‘공개 저장소’로 표기합니다.
         </div>
       </div>
-    </SectionShell>
+    </details>
   )
 }
 
@@ -871,9 +895,10 @@ function Principles() {
                 </a>
                 <a
                   href="#archive"
+                  onClick={openWorkHistory}
                   className="inline-flex items-center gap-1.5 rounded-full border border-white/30 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-base"
                 >
-                  전체 기록
+                  전체 이력
                   <ArrowRight size={14} aria-hidden="true" />
                 </a>
               </div>
@@ -902,8 +927,8 @@ function Footer() {
           <a href="#projects" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             작업 분야
           </a>
-          <a href="#archive" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
-            GITHUB 기록
+          <a href="#archive" onClick={openWorkHistory} className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
+            작업 이력
           </a>
           <a href={GITHUB_PROFILE} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             GITHUB ↗
@@ -921,7 +946,6 @@ export default function App() {
         <Hero />
         <About />
         <Projects />
-        <Archive />
         <Principles />
       </main>
       <Footer />
