@@ -26,6 +26,7 @@ import {
 } from './data/githubPortfolio'
 
 const GITHUB_PROFILE = 'https://github.com/dongjinshin-kookmin'
+const DESIGN_DICTIONARY_URL = '/design-dictionary/'
 const HERO_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4'
 
@@ -36,7 +37,7 @@ const navItems = [
   { label: '원칙', href: '#principles' },
   {
     label: '디자인 사전 ↗',
-    href: 'https://dongjinshin-kookmin.github.io/design-dictionary/',
+    href: DESIGN_DICTIONARY_URL,
     external: true,
   },
   { label: 'GitHub ↗', href: GITHUB_PROFILE, external: true },
