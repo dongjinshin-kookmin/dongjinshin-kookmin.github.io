@@ -6,7 +6,7 @@
 
 - 공개 사이트: <https://dongjinshin-kookmin.github.io/>
 - 성과관리 통합시스템: <https://dongjinshin-kookmin.github.io/kmu-performance-system/>
-- UI 디자인 사전: <https://dongjinshin-kookmin.github.io/kmu-performance-system/design-dictionary/>
+- UI 디자인 사전(독립 페이지): <https://dongjinshin-kookmin.github.io/design-dictionary/>
 - 교비회계 수지분석: <https://dongjinshin-kookmin.github.io/univ-finance-dashboard/>
 - AI 기술과 활용 직원교육: 공개자료 재점검 중(홈페이지 링크 비활성)
 - 범용 디지털 백드롭: <https://dongjinshin-kookmin.github.io/digital-backdrop/>

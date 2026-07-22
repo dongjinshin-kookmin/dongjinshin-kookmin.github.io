@@ -36,7 +36,7 @@ const navItems = [
   { label: '원칙', href: '#principles' },
   {
     label: '디자인 사전 ↗',
-    href: 'https://dongjinshin-kookmin.github.io/kmu-performance-system/design-dictionary/',
+    href: 'https://dongjinshin-kookmin.github.io/design-dictionary/',
     external: true,
   },
   { label: 'GitHub ↗', href: GITHUB_PROFILE, external: true },
