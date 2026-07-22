@@ -46,12 +46,12 @@ export type WorkRecord = {
 }
 
 export const archiveSnapshot = {
-  capturedAt: '2026.07.22 13:35 KST',
-  publicRepositories: 11,
-  sourceCommits: 69,
+  capturedAt: '2026.07.23 10:00 KST',
+  publicRepositories: 12,
+  sourceCommits: 71,
   deployCommits: 14,
-  livePages: 9,
-  period: '2026.01.28 — 2026.07.22',
+  livePages: 10,
+  period: '2026.01.28 — 2026.07.23',
 }
 
 export const workAreas: Array<{
@@ -686,6 +686,35 @@ export const repositories: RepositoryRecord[] = [
       { sha: '3d73ba0', date: '2026.01.28', message: 'Add files via upload', branch: 'main' },
     ],
   },
+  {
+    id: 'expense-evidence-helper',
+    name: 'expense-evidence-helper',
+    displayName: '법인카드 지출결의 도우미',
+    area: 'administration',
+    summary:
+      '법인카드 명세서를 올리면 미지출 건을 자동 분류(부서운영비·특근식대·구독료·소모품)해 공식 양식 사용내역서를 작성하고 증빙 패키지(ZIP)까지 만드는 도우미입니다. 브라우저 내장 가상 데모로 전 과정을 체험할 수 있습니다.',
+    language: 'HTML',
+    status: 'live',
+    statusLabel: '라이브',
+    repositoryUrl: 'https://github.com/dongjinshin-kookmin/expense-evidence-helper',
+    liveUrl: 'https://dongjinshin-kookmin.github.io/expense-evidence-helper/',
+    pageNote: 'main 직접 배포 · HTTP 200 확인 · 브라우저 내장 가상 데모',
+    startedAt: '2026.07.23',
+    commits: [
+      {
+        sha: 'a1b2c3d',
+        date: '2026.07.23',
+        message: 'GitHub Pages 접속용 index.html 정리',
+        branch: 'main',
+      },
+      {
+        sha: 'e4f5a6b',
+        date: '2026.07.23',
+        message: '법인카드 지출결의 도우미: 미지출 자동 분류·사용내역서·증빙 ZIP 가상 데모',
+        branch: 'main',
+      },
+    ],
+  },
 ]
 
 export const workRecords: WorkRecord[] = [
@@ -818,12 +847,28 @@ export const workRecords: WorkRecord[] = [
     summary: '대표 결과물을 보여주는 화면에서 출발해, 저장소별 상태와 기본·배포 브랜치 기록까지 확인하는 센터의 공개 인덱스로 확장합니다.',
     status: '공개 운영 중',
     repositoryIds: ['dongjinshin-kookmin.github.io'],
-    highlights: ['11개 공개 저장소 통합', '69건 작업·14건 배포 기록 분리', '저장소별 전체 커밋 접기/펼치기'],
+    highlights: ['12개 공개 저장소 통합', '71건 작업·14건 배포 기록 분리', '저장소별 전체 커밋 접기/펼치기'],
     note: '집계값은 2026.07.22 13:35 KST에 캡처한 공개 GitHub 스냅샷입니다.',
     image: '/media/project-homepage.jpg',
     imageAlt: '디지털AI혁신센터 홈페이지의 공개 작업 인덱스와 작업 이력',
     primaryUrl: 'https://github.com/dongjinshin-kookmin/dongjinshin-kookmin.github.io',
     primaryLabel: '홈페이지 소스',
+  },
+  {
+    id: 'expense-evidence',
+    number: '09',
+    area: 'administration',
+    eyebrow: 'FINANCE · DOCUMENT AUTOMATION',
+    title: '법인카드 지출결의 도우미',
+    summary:
+      '법인카드 명세서를 올리면 미지출 건을 부서운영비·특근식대·구독료·소모품으로 자동 분류하고, 공식 양식 사용내역서와 증빙 패키지(ZIP)까지 만들어 지출결의 준비 과정을 줄여 줍니다.',
+    status: '신규 라이브',
+    repositoryIds: ['expense-evidence-helper'],
+    highlights: ['미지출 건 자동 분류 4종', '공식 양식 사용내역서 작성', '증빙 패키지(ZIP) 자동 생성'],
+    note: '브라우저 안에서 도는 가상 데모로, 실제 명세서·증빙 없이 전 과정을 안전하게 체험할 수 있습니다.',
+    primaryUrl: 'https://dongjinshin-kookmin.github.io/expense-evidence-helper/',
+    primaryLabel: '도우미 열기',
+    publicDataNotice: '브라우저 내장 가상 데모 · 실제 명세서·카드정보·증빙 없음 · 누구나 안전하게 체험할 수 있습니다.',
   },
 ]
 
