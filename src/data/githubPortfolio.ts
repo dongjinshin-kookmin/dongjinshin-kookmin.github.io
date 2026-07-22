@@ -44,12 +44,12 @@ export type WorkRecord = {
 }
 
 export const archiveSnapshot = {
-  capturedAt: '2026.07.20 22:36 KST',
+  capturedAt: '2026.07.22 10:56 KST',
   publicRepositories: 10,
-  sourceCommits: 56,
-  deployCommits: 13,
+  sourceCommits: 57,
+  deployCommits: 14,
   livePages: 8,
-  period: '2026.01.28 — 2026.07.20',
+  period: '2026.01.28 — 2026.07.22',
 }
 
 export const workAreas: Array<{
@@ -130,6 +130,12 @@ export const repositories: RepositoryRecord[] = [
     pageNote: '연결 자료의 개인정보·공개 범위 재점검 중 · 홈페이지 링크 비활성',
     startedAt: '2026.07.10',
     commits: [
+      {
+        sha: 'b72d635',
+        date: '2026.07.22',
+        message: 'feat: add visual UI design dictionary',
+        branch: 'main',
+      },
       {
         sha: '5283193',
         date: '2026.07.20',
@@ -570,6 +576,12 @@ export const repositories: RepositoryRecord[] = [
         branch: 'main',
       },
       {
+        sha: 'a9de312',
+        date: '2026.07.22',
+        message: 'Deploy UI design dictionary',
+        branch: 'gh-pages',
+      },
+      {
         sha: '481b09b',
         date: '2026.07.15',
         message: 'Deploy royal blue dashboard redesign',
@@ -737,16 +749,32 @@ export const workRecords: WorkRecord[] = [
     primaryLabel: '저장소 보기',
   },
   {
-    id: 'homepage',
+    id: 'design-dictionary',
     number: '07',
+    area: 'platform',
+    eyebrow: 'DESIGN SYSTEM · VISUAL REFERENCE',
+    title: 'UI 디자인 사전',
+    summary: '웹과 macOS에서 반복해 만나는 UI 패턴 71개를 한국어 설명, 구현 키워드와 자체 제작 미니 도판으로 탐색하는 시각 사전입니다.',
+    status: '신규 라이브',
+    repositoryIds: ['kmu-performance-system'],
+    highlights: ['Web 39개·macOS 32개', '검색·플랫폼·용도 필터', '71종 자체 제작 미니 도판'],
+    note: 'NameThatUI의 공개 용어 인덱스를 참고하되 설명과 도판을 새로 작성했으며, 개발 프롬프트 복사와 원본 용어 페이지 연결을 제공합니다.',
+    image: '/media/project-design-dictionary.png',
+    imageAlt: '블루 톤으로 구성한 UI 디자인 사전 홈 화면과 패턴 카드',
+    primaryUrl: 'https://dongjinshin-kookmin.github.io/kmu-performance-system/design-dictionary/',
+    primaryLabel: '디자인 사전 열기',
+  },
+  {
+    id: 'homepage',
+    number: '08',
     area: 'platform',
     eyebrow: 'PUBLIC ARCHIVE · PLATFORM',
     title: '센터 홈페이지와 공개 작업 아카이브',
     summary: '대표 결과물을 보여주는 화면에서 출발해, 저장소별 상태와 기본·배포 브랜치 기록까지 확인하는 센터의 공개 인덱스로 확장합니다.',
     status: '공개 운영 중',
     repositoryIds: ['dongjinshin-kookmin.github.io'],
-    highlights: ['10개 공개 저장소 통합', '56건 작업·13건 배포 기록 분리', '저장소별 전체 커밋 접기/펼치기'],
-    note: '집계값은 2026.07.20 22:36 KST에 캡처한 공개 GitHub 스냅샷입니다.',
+    highlights: ['10개 공개 저장소 통합', '57건 작업·14건 배포 기록 분리', '저장소별 전체 커밋 접기/펼치기'],
+    note: '집계값은 2026.07.22 10:56 KST에 캡처한 공개 GitHub 스냅샷입니다.',
     image: '/media/project-homepage.jpg',
     imageAlt: '디지털AI혁신센터 홈페이지의 공개 작업 인덱스와 작업 이력',
     primaryUrl: 'https://github.com/dongjinshin-kookmin/dongjinshin-kookmin.github.io',

@@ -34,6 +34,11 @@ const navItems = [
   { label: '작업 분야', href: '#projects' },
   { label: '작업 이력', href: '#archive', expandsArchive: true },
   { label: '원칙', href: '#principles' },
+  {
+    label: '디자인 사전 ↗',
+    href: 'https://dongjinshin-kookmin.github.io/kmu-performance-system/design-dictionary/',
+    external: true,
+  },
   { label: 'GitHub ↗', href: GITHUB_PROFILE, external: true },
 ]
 
@@ -135,7 +140,7 @@ function Hero() {
       <div className="relative z-20 flex justify-center px-4 pt-4 md:pt-6">
         <nav
           aria-label="주요 메뉴"
-          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:grid sm:w-[min(94vw,720px)] sm:grid-cols-6 sm:px-6 md:px-8 md:py-4"
+          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:grid sm:w-[min(96vw,880px)] sm:grid-cols-7 sm:px-6 md:px-8 md:py-4"
         >
           <a
             href="#hero"
