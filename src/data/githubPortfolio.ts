@@ -22,6 +22,7 @@ export type RepositoryRecord = {
   liveUrl?: string
   pageNote: string
   startedAt: string
+  manualId?: string
   commits: CommitRecord[]
 }
 
@@ -41,6 +42,7 @@ export type WorkRecord = {
   primaryUrl?: string
   primaryLabel?: string
   publicDataNotice?: string
+  manualId?: string
 }
 
 export const archiveSnapshot = {
@@ -103,6 +105,7 @@ export const repositories: RepositoryRecord[] = [
     liveUrl: 'https://dongjinshin-kookmin.github.io/timetable-app/',
     pageNote: 'main 직접 배포 · HTTP 200 확인 · 가상 데이터 공개 데모',
     startedAt: '2026.07.18',
+    manualId: 'timetable',
     commits: [
       {
         sha: 'bfd82a4',
@@ -274,6 +277,7 @@ export const repositories: RepositoryRecord[] = [
     liveUrl: 'https://dongjinshin-kookmin.github.io/univ-finance-dashboard/',
     pageNote: 'main 직접 배포 · HTTP 200 확인',
     startedAt: '2026.07.14',
+    manualId: 'finance',
     commits: [
       {
         sha: '9795dec',
@@ -509,6 +513,7 @@ export const repositories: RepositoryRecord[] = [
     repositoryUrl: 'https://github.com/dongjinshin-kookmin/markdown-editor',
     pageNote: 'Pages 설정 확인 · 2026.07.20 현재 HTTP 404',
     startedAt: '2026.07.19',
+    manualId: 'markdown',
     commits: [
       {
         sha: '7d918b5',
@@ -531,6 +536,7 @@ export const repositories: RepositoryRecord[] = [
     liveUrl: 'https://dongjinshin-kookmin.github.io/digital-backdrop/',
     pageNote: 'main 직접 배포 · HTTP 200 확인',
     startedAt: '2026.07.15',
+    manualId: 'backdrop',
     commits: [
       {
         sha: '64bcc12',
@@ -565,6 +571,7 @@ export const repositories: RepositoryRecord[] = [
     liveUrl: 'https://dongjinshin-kookmin.github.io/kmu-performance-system/',
     pageNote: 'gh-pages 배포 · HTTP 200 확인',
     startedAt: '2026.07.10',
+    manualId: 'performance',
     commits: [
       {
         sha: '370181d',
@@ -635,6 +642,7 @@ export const repositories: RepositoryRecord[] = [
     liveUrl: 'https://dongjinshin-kookmin.github.io/nkust-mou-backdrop/',
     pageNote: 'main 직접 배포 · HTTP 200 확인',
     startedAt: '2026.07.09',
+    manualId: 'backdrop',
     commits: [
       {
         sha: '6bde931',
@@ -655,6 +663,7 @@ export const repositories: RepositoryRecord[] = [
     statusLabel: '공개 정리 검토',
     pageNote: '데모 데이터·소스 정리 전까지 홈페이지에서 링크 비활성',
     startedAt: '2026.01.29',
+    manualId: 'hrms',
     commits: [
       { sha: '7306a2d', date: '2026.01.29', message: 'Add files via upload', branch: 'main' },
       { sha: '3b51f26', date: '2026.01.29', message: 'Initial commit', branch: 'main' },
@@ -671,6 +680,7 @@ export const repositories: RepositoryRecord[] = [
     statusLabel: '배포 테스트',
     pageNote: 'Pages 설정은 있지만 현재 HTTP 404 · 링크 비활성',
     startedAt: '2026.01.28',
+    manualId: 'hrms',
     commits: [
       { sha: 'ae7165a', date: '2026.01.29', message: 'Add files via upload', branch: 'main' },
       { sha: '3d73ba0', date: '2026.01.28', message: 'Add files via upload', branch: 'main' },
@@ -710,6 +720,7 @@ export const workRecords: WorkRecord[] = [
     imageAlt: '성과관리 통합시스템 성과 총람의 전 구성원 성과 맵',
     primaryUrl: 'https://dongjinshin-kookmin.github.io/kmu-performance-system/overview/faculty/',
     primaryLabel: '라이브 데모',
+    manualId: 'performance',
     publicDataNotice: '가상 데이터 공개 데모 · 실명·사번·실제 평가정보 없음 · 누구나 안전하게 열람할 수 있습니다.',
   },
   {
@@ -727,6 +738,7 @@ export const workRecords: WorkRecord[] = [
     imageAlt: '교비회계 수지분석 대시보드 홈 화면',
     primaryUrl: 'https://dongjinshin-kookmin.github.io/univ-finance-dashboard/',
     primaryLabel: '대시보드 보기',
+    manualId: 'finance',
   },
   {
     id: 'timetable',
@@ -743,6 +755,7 @@ export const workRecords: WorkRecord[] = [
     imageAlt: '시간표 편성 시스템의 가상 강의실 시간표 배치 화면',
     primaryUrl: 'https://dongjinshin-kookmin.github.io/timetable-app/',
     primaryLabel: '라이브 데모',
+    manualId: 'timetable',
     publicDataNotice: '가상·익명화 데이터 공개 데모 · 실제 교수·교과목·편성정보 없음 · 누구나 안전하게 열람할 수 있습니다.',
   },
   {
@@ -760,6 +773,7 @@ export const workRecords: WorkRecord[] = [
     imageAlt: '디지털 백드롭 기본 행사 화면',
     primaryUrl: 'https://dongjinshin-kookmin.github.io/digital-backdrop/',
     primaryLabel: '범용 도구 보기',
+    manualId: 'backdrop',
   },
   {
     id: 'markdown',
@@ -776,6 +790,7 @@ export const workRecords: WorkRecord[] = [
     imageAlt: '마크다운 에디터의 문서 목록, 편집기와 실시간 미리보기',
     primaryUrl: 'https://github.com/dongjinshin-kookmin/markdown-editor',
     primaryLabel: '저장소 보기',
+    manualId: 'markdown',
   },
   {
     id: 'design-dictionary',
@@ -792,6 +807,7 @@ export const workRecords: WorkRecord[] = [
     imageAlt: '블루 톤으로 구성한 UI 디자인 사전 홈 화면과 패턴 카드',
     primaryUrl: '/design-dictionary/',
     primaryLabel: '디자인 사전 열기',
+    manualId: 'design-dictionary',
   },
   {
     id: 'homepage',

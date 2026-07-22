@@ -2,6 +2,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   ArrowUpRight,
+  BookOpen,
   Check,
   ChevronDown,
   GitBranch,
@@ -27,6 +28,7 @@ import {
 
 const GITHUB_PROFILE = 'https://github.com/dongjinshin-kookmin'
 const DESIGN_DICTIONARY_URL = '/design-dictionary/'
+const MANUALS_URL = '/manuals/'
 const HERO_VIDEO =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4'
 
@@ -38,6 +40,11 @@ const navItems = [
   {
     label: '디자인 사전 ↗',
     href: DESIGN_DICTIONARY_URL,
+    external: true,
+  },
+  {
+    label: '사용 매뉴얼 ↗',
+    href: MANUALS_URL,
     external: true,
   },
   { label: 'GitHub ↗', href: GITHUB_PROFILE, external: true },
@@ -141,7 +148,7 @@ function Hero() {
       <div className="relative z-20 flex justify-center px-4 pt-4 md:pt-6">
         <nav
           aria-label="주요 메뉴"
-          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:grid sm:w-[min(96vw,880px)] sm:grid-cols-7 sm:px-6 md:px-8 md:py-4"
+          className="inline-flex w-auto items-center rounded-2xl border border-white/60 bg-white/70 px-5 py-3.5 shadow-sm backdrop-blur-md sm:grid sm:w-[min(97vw,1040px)] sm:grid-cols-8 sm:px-6 md:px-8 md:py-4"
         >
           <a
             href="#hero"
@@ -153,6 +160,7 @@ function Hero() {
           <div className="ml-5 flex items-center gap-4 text-sm font-semibold sm:hidden">
             <a href="#projects" className="text-[#1B133C]/80">작업</a>
             <a href="#archive" onClick={openWorkHistory} className="text-[#1B133C]/80">이력</a>
+            <a href={MANUALS_URL} className="text-[#1B133C]/80">매뉴얼</a>
           </div>
           <div className="hidden whitespace-nowrap sm:contents">
             {navItems.map((item) => (
@@ -385,9 +393,9 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
     <AnimatedCard
       delay={(index % 3) * 0.08}
       labelledBy={`work-${work.id}-title`}
-      className="section-glass-card work-card group overflow-hidden rounded-[1.5rem] md:grid md:grid-cols-12 md:rounded-[1.75rem]"
+      className="section-glass-card work-card group overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]"
     >
-      <div className="project-media relative min-h-[280px] overflow-hidden bg-[#253158] md:col-span-4 md:min-h-[460px]">
+      <div className="project-media relative aspect-video w-full overflow-hidden bg-[#111934]">
         {work.image ? (
           <>
             <img
@@ -395,9 +403,9 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
               alt={work.imageAlt ?? ''}
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.025]"
+              className="absolute inset-0 h-full w-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/55" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/35" aria-hidden="true" />
           </>
         ) : (
           <div className="work-card-visual absolute inset-0 flex flex-col justify-between p-6 text-white sm:p-8">
@@ -423,7 +431,7 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
         </span>
       </div>
 
-      <div className="min-w-0 p-6 sm:p-7 md:col-span-8 md:flex md:flex-col md:justify-center md:p-9 lg:p-12">
+      <div className="min-w-0 p-6 sm:p-8 md:p-9 lg:p-11">
         <p className="text-[10px] font-bold tracking-[0.1em] text-[#4D4666] sm:text-xs sm:tracking-[0.14em] md:text-sm">
           {work.eyebrow}
         </p>
@@ -433,7 +441,7 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
         >
           {work.title}
         </h3>
-        <p className="mt-5 max-w-4xl text-base leading-[1.8] text-[#4D4666] sm:text-lg md:text-xl">
+        <p className="mt-5 max-w-5xl text-base leading-[1.8] text-[#4D4666] sm:text-lg md:text-xl">
           {work.summary}
         </p>
 
@@ -461,7 +469,7 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
           </dl>
         ) : null}
 
-        <ul className="mt-6 grid gap-3 lg:grid-cols-3">
+        <ul className="mt-6 grid gap-3 md:grid-cols-3">
           {work.highlights.map((item) => (
             <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[#4D4666] sm:text-base">
               <Check size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-[#1D6C59]" aria-hidden="true" />
@@ -475,6 +483,16 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
         </p>
 
         <div className="mt-7 flex flex-wrap items-center gap-2">
+          {work.manualId ? (
+            <a
+              href={`${MANUALS_URL}#${work.manualId}`}
+              className="inline-flex items-center gap-2 rounded-full bg-[#1B133C] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#355E9C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:text-base"
+            >
+              <BookOpen size={17} aria-hidden="true" />
+              상세 사용 매뉴얼
+              <ArrowRight size={15} aria-hidden="true" />
+            </a>
+          ) : null}
           {work.primaryUrl ? (
             <a
               href={work.primaryUrl}
@@ -486,18 +504,61 @@ function WorkCard({ work, index }: { work: WorkRecord; index: number }) {
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           ) : null}
-          {linkedRepositories.map((repository) => (
-            <a
-              key={repository.id}
-              href="#archive"
-              onClick={openWorkHistory}
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#1B133C]/15 bg-white/60 px-4 py-2.5 text-xs font-bold text-[#4D4666] transition-colors hover:border-[#1B133C]/30 hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C] sm:text-sm"
-            >
-              {repository.displayName} 이력
-              <ArrowRight size={14} aria-hidden="true" />
-            </a>
-          ))}
         </div>
+
+        {linkedRepositories.length > 0 ? (
+          <details className="repository-details mt-7 overflow-hidden rounded-2xl border border-[#1B133C]/12 bg-white/55">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 marker:hidden sm:px-6 [&::-webkit-details-marker]:hidden">
+              <span>
+                <strong className="block text-base text-[#1B133C] sm:text-lg">이 카드의 전체 수정 이력</strong>
+                <span className="mt-1 block text-xs leading-relaxed text-[#4D4666] sm:text-sm">
+                  {linkedRepositories.length}개 저장소 · 작업 {sourceCount}건 · 배포 {deploymentCount}건
+                </span>
+              </span>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E3E9F4] text-[#1B133C]">
+                <ChevronDown className="archive-chevron" size={20} aria-hidden="true" />
+              </span>
+            </summary>
+            <div className="space-y-8 border-t border-[#1B133C]/10 px-5 py-6 sm:px-6">
+              {linkedRepositories.map((repository) => {
+                const sourceCommits = repository.commits.filter((commit) => commit.branch === 'main')
+                const deployCommits = repository.commits.filter((commit) => commit.branch === 'gh-pages')
+                const linksEnabled = repository.status !== 'review'
+
+                return (
+                  <section key={repository.id} aria-labelledby={`card-${work.id}-${repository.id}`}>
+                    <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                      <h4 id={`card-${work.id}-${repository.id}`} className="text-xl font-normal tracking-[-0.035em] text-[#1B133C] sm:text-2xl">
+                        {repository.displayName}
+                      </h4>
+                      <span className="rounded-full bg-[#E6F1ED] px-3 py-1.5 text-xs font-bold text-[#155944]">
+                        {repository.statusLabel}
+                      </span>
+                    </div>
+                    <CommitList
+                      title="기본 브랜치 · 작업 이력"
+                      branch="main"
+                      repository={repository}
+                      commits={sourceCommits}
+                      linksEnabled={linksEnabled}
+                    />
+                    {deployCommits.length > 0 ? (
+                      <div className="mt-5">
+                        <CommitList
+                          title="gh-pages · 배포 이력"
+                          branch="gh-pages"
+                          repository={repository}
+                          commits={deployCommits}
+                          linksEnabled={linksEnabled}
+                        />
+                      </div>
+                    ) : null}
+                  </section>
+                )
+              })}
+            </div>
+          </details>
+        ) : null}
       </div>
     </AnimatedCard>
   )
@@ -525,8 +586,8 @@ function Projects() {
             ]}
           />
           <p className="max-w-xl text-base leading-[1.8] text-[#4D4666] sm:text-lg lg:text-xl">
-            저장소를 단순 나열하지 않고, 실제 업무와 결과물을 기준으로 묶었습니다. 모든 카드는
-            한 줄에 하나씩 배치해 핵심 정보를 빠르게 읽을 수 있습니다.
+            저장소를 실제 업무와 결과물 기준으로 묶고, 16:9 전체 화면과 상세 사용법, 수정 이력을
+            한 카드 안에서 함께 확인할 수 있게 구성했습니다.
           </p>
         </div>
 
@@ -631,8 +692,21 @@ function RepositoryDetails({ repository, expanded = false }: { repository: Repos
                 <ShieldAlert size={19} className="mt-0.5 shrink-0" aria-hidden="true" />
                 <p>데모 데이터와 공개 소스를 재검토하는 저장소입니다. 검토를 마치기 전까지 홈페이지에서 외부 링크를 제공하지 않습니다.</p>
               </div>
-            ) : (
-              <div className="mt-5 flex flex-wrap gap-2">
+            ) : null}
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {repository.manualId ? (
+                <a
+                  href={`${MANUALS_URL}#${repository.manualId}`}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#1B133C] px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#355E9C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]"
+                >
+                  <BookOpen size={15} aria-hidden="true" />
+                  상세 사용 매뉴얼
+                  <ArrowRight size={14} aria-hidden="true" />
+                </a>
+              ) : null}
+              {linksEnabled ? (
+                <>
                 {repository.repositoryUrl ? (
                   <a
                     href={repository.repositoryUrl}
@@ -657,8 +731,9 @@ function RepositoryDetails({ repository, expanded = false }: { repository: Repos
                     <ArrowUpRight size={14} aria-hidden="true" />
                   </a>
                 ) : null}
-              </div>
-            )}
+                </>
+              ) : null}
+            </div>
           </div>
 
           <div className="lg:col-span-7">
@@ -935,6 +1010,9 @@ function Footer() {
           </a>
           <a href="#archive" onClick={openWorkHistory} className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             작업 이력
+          </a>
+          <a href={MANUALS_URL} className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
+            사용 매뉴얼
           </a>
           <a href={GITHUB_PROFILE} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#1B133C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1B133C]">
             GITHUB ↗

@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         homepage: 'index.html',
         designDictionary: 'design-dictionary/index.html',
+        manuals: 'manuals/index.html',
       },
     },
   },
